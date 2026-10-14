@@ -1,0 +1,79 @@
+{
+  "claims": 89,
+  "accuracy": 1.0,
+  "correct": 89,
+  "false_payment_rate": 0.0,
+  "false_payments": 0,
+  "risky_claims": 48,
+  "wrongful_hold_rate": 0.0,
+  "wrongful_holds": 0,
+  "payable_claims": 41,
+  "straight_through_rate": 0.742,
+  "critic_replans": 4,
+  "avg_ms": 15.6,
+  "manual_minutes_baseline": 25,
+  "confusion": {
+    "APPROVE": {
+      "APPROVE": 22,
+      "PARTIAL": 0,
+      "REJECT": 0,
+      "ESCALATE": 0,
+      "QUERY": 0
+    },
+    "PARTIAL": {
+      "APPROVE": 0,
+      "PARTIAL": 19,
+      "REJECT": 0,
+      "ESCALATE": 0,
+      "QUERY": 0
+    },
+    "REJECT": {
+      "APPROVE": 0,
+      "PARTIAL": 0,
+      "REJECT": 25,
+      "ESCALATE": 0,
+      "QUERY": 0
+    },
+    "ESCALATE": {
+      "APPROVE": 0,
+      "PARTIAL": 0,
+      "REJECT": 0,
+      "ESCALATE": 19,
+      "QUERY": 0
+    },
+    "QUERY": {
+      "APPROVE": 0,
+      "PARTIAL": 0,
+      "REJECT": 0,
+      "ESCALATE": 0,
+      "QUERY": 4
+    }
+  },
+  "per_class": {
+    "APPROVE": {
+      "support": 22,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "PARTIAL": {
+      "support": 19,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "REJECT": {
+      "support": 25,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "ESCALATE": {
+      "support": 19,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "QUERY": {
+      "support": 4,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  }
+}

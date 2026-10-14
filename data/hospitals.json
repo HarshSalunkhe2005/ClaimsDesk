@@ -1,0 +1,72 @@
+[
+  {
+    "id": "H01",
+    "name": "Apollo Care Hospital",
+    "city": "Pune",
+    "network": true,
+    "watchlist": false
+  },
+  {
+    "id": "H02",
+    "name": "Sahyadri Multispeciality",
+    "city": "Pune",
+    "network": true,
+    "watchlist": false
+  },
+  {
+    "id": "H03",
+    "name": "Jehangir Medical Centre",
+    "city": "Pune",
+    "network": true,
+    "watchlist": false
+  },
+  {
+    "id": "H04",
+    "name": "Ruby Hall Clinic",
+    "city": "Pune",
+    "network": true,
+    "watchlist": false
+  },
+  {
+    "id": "H05",
+    "name": "Fortis Mulund",
+    "city": "Mumbai",
+    "network": true,
+    "watchlist": false
+  },
+  {
+    "id": "H06",
+    "name": "Narayana Health City",
+    "city": "Bengaluru",
+    "network": true,
+    "watchlist": false
+  },
+  {
+    "id": "H07",
+    "name": "Lotus Nursing Home",
+    "city": "Pune",
+    "network": false,
+    "watchlist": false
+  },
+  {
+    "id": "H08",
+    "name": "City Care Clinic",
+    "city": "Nashik",
+    "network": false,
+    "watchlist": false
+  },
+  {
+    "id": "H09",
+    "name": "SunRise Multispeciality",
+    "city": "Pune",
+    "network": true,
+    "watchlist": true
+  },
+  {
+    "id": "H10",
+    "name": "MedCore Hospital",
+    "city": "Thane",
+    "network": true,
+    "watchlist": true
+  }
+]

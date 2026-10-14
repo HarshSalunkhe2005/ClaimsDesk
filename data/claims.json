@@ -1,0 +1,3265 @@
+[
+  {
+    "claim": {
+      "claim_id": "CLM-26-0001",
+      "member_id": "M1028",
+      "hospital_id": "H01",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-07-05",
+      "discharge_date": "2026-07-09",
+      "filed_date": "2026-07-17",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 8326,
+      "is_accident": false,
+      "bill": {
+        "room": 33300,
+        "professional": 15410,
+        "medicines": 6160,
+        "diagnostics": 3640,
+        "consumables": 2800,
+        "non_medical": 0
+      },
+      "claimed_amount": 61310,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Sneha Deshmukh, 50M. Admitted 2026-07-05, discharged 2026-07-09. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_room_rent"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0002",
+      "member_id": "M1086",
+      "hospital_id": "H01",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-07-10",
+      "discharge_date": "2026-07-13",
+      "filed_date": "2026-07-23",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 3400,
+      "is_accident": false,
+      "bill": {
+        "room": 10200,
+        "professional": 23540,
+        "medicines": 9420,
+        "diagnostics": 5560,
+        "consumables": 4280,
+        "non_medical": 0
+      },
+      "claimed_amount": 53000,
+      "documents": [
+        "discharge_summary",
+        "final_bill",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Aarav Mehta, 50F. Admitted 2026-07-10, discharged 2026-07-13. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "QUERY",
+      "scenario": "query_missing_documents"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0003",
+      "member_id": "M1005",
+      "hospital_id": "H03",
+      "procedure_code": "P102",
+      "diagnosis": "Cataract surgery indicated",
+      "admission_date": "2026-07-29",
+      "discharge_date": "2026-07-30",
+      "filed_date": "2026-08-13",
+      "los_days": 1,
+      "room_type": "Private",
+      "room_rate": 7300,
+      "is_accident": false,
+      "bill": {
+        "room": 7300,
+        "professional": 16280,
+        "medicines": 6510,
+        "diagnostics": 3850,
+        "consumables": 2960,
+        "non_medical": 0
+      },
+      "claimed_amount": 36900,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Karan Iyer, 44F. Admitted 2026-07-29, discharged 2026-07-30. Diagnosis: Cataract surgery indicated. Procedure performed: Cataract surgery. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0004",
+      "member_id": "M1044",
+      "hospital_id": "H06",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-07-17",
+      "discharge_date": "2026-07-20",
+      "filed_date": "2026-08-02",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 9400,
+      "is_accident": false,
+      "bill": {
+        "room": 28200,
+        "professional": 23320,
+        "medicines": 9330,
+        "diagnostics": 5510,
+        "consumables": 4240,
+        "non_medical": 0
+      },
+      "claimed_amount": 70600,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Rahul Shah, 55M. Admitted 2026-07-17, discharged 2026-07-20. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_initial_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0005",
+      "member_id": "M1002",
+      "hospital_id": "H02",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-06-11",
+      "discharge_date": "2026-06-14",
+      "filed_date": "2026-06-25",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 2200,
+      "is_accident": false,
+      "bill": {
+        "room": 6600,
+        "professional": 25490,
+        "medicines": 10200,
+        "diagnostics": 6030,
+        "consumables": 4640,
+        "non_medical": 0
+      },
+      "claimed_amount": 52960,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Ishaan Gupta, 51M. Admitted 2026-06-11, discharged 2026-06-14. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0006",
+      "member_id": "M1077",
+      "hospital_id": "H02",
+      "procedure_code": "P105",
+      "diagnosis": "Chest pain, evaluation",
+      "admission_date": "2026-06-06",
+      "discharge_date": "2026-06-09",
+      "filed_date": "2026-06-22",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 7800,
+      "is_accident": false,
+      "bill": {
+        "room": 23400,
+        "professional": 104550,
+        "medicines": 41820,
+        "diagnostics": 24710,
+        "consumables": 19010,
+        "non_medical": 0
+      },
+      "claimed_amount": 213490,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Neha Joshi, 51F. Admitted 2026-06-06, discharged 2026-06-09. Diagnosis: Chest pain, evaluation. Procedure performed: Diagnostic coronary angiography. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_procedure_mismatch"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0007",
+      "member_id": "M1053",
+      "hospital_id": "H06",
+      "procedure_code": "P112",
+      "diagnosis": "Diabetic ketoacidosis management indicated",
+      "admission_date": "2026-07-18",
+      "discharge_date": "2026-07-22",
+      "filed_date": "2026-08-04",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 4000,
+      "is_accident": false,
+      "bill": {
+        "room": 16000,
+        "professional": 23810,
+        "medicines": 9520,
+        "diagnostics": 5630,
+        "consumables": 4330,
+        "non_medical": 0
+      },
+      "claimed_amount": 59290,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Aarav Mehta, 45F. Admitted 2026-07-18, discharged 2026-07-22. Diagnosis: Diabetic ketoacidosis management indicated. Procedure performed: Diabetic ketoacidosis management. History: Known case of Type 2 diabetes since 2017. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_pre_existing"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0008",
+      "member_id": "M1079",
+      "hospital_id": "H01",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-06-14",
+      "discharge_date": "2026-06-19",
+      "filed_date": "2026-06-30",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 4200,
+      "is_accident": false,
+      "bill": {
+        "room": 21000,
+        "professional": 17290,
+        "medicines": 6920,
+        "diagnostics": 4090,
+        "consumables": 3140,
+        "non_medical": 0
+      },
+      "claimed_amount": 76940,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Vikram Gupta, 58F. Admitted 2026-06-14, discharged 2026-06-19. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_bill_tampering"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0009",
+      "member_id": "M1046",
+      "hospital_id": "H04",
+      "procedure_code": "P104",
+      "diagnosis": "Total knee replacement indicated",
+      "admission_date": "2026-05-16",
+      "discharge_date": "2026-05-21",
+      "filed_date": "2026-05-30",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 4600,
+      "is_accident": false,
+      "bill": {
+        "room": 23000,
+        "professional": 121440,
+        "medicines": 48580,
+        "diagnostics": 28700,
+        "consumables": 22080,
+        "non_medical": 0
+      },
+      "claimed_amount": 243800,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Sneha Gupta, 27M. Admitted 2026-05-16, discharged 2026-05-21. Diagnosis: Total knee replacement indicated. Procedure performed: Total knee replacement. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_specific_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0010",
+      "member_id": "M1069",
+      "hospital_id": "H05",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-07-23",
+      "discharge_date": "2026-07-26",
+      "filed_date": "2026-08-03",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 2200,
+      "is_accident": false,
+      "bill": {
+        "room": 6600,
+        "professional": 76270,
+        "medicines": 30510,
+        "diagnostics": 18030,
+        "consumables": 13870,
+        "non_medical": 0
+      },
+      "claimed_amount": 145280,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Arjun Deshmukh, 38F. Admitted 2026-07-23, discharged 2026-07-26. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_inflated_bill"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0011",
+      "member_id": "M1047",
+      "hospital_id": "H02",
+      "procedure_code": "P104",
+      "diagnosis": "Total knee replacement indicated",
+      "admission_date": "2026-07-28",
+      "discharge_date": "2026-08-02",
+      "filed_date": "2026-08-11",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 4100,
+      "is_accident": false,
+      "bill": {
+        "room": 20500,
+        "professional": 130670,
+        "medicines": 52270,
+        "diagnostics": 30890,
+        "consumables": 23760,
+        "non_medical": 0
+      },
+      "claimed_amount": 258090,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Vikram Joshi, 28F. Admitted 2026-07-28, discharged 2026-08-02. Diagnosis: Total knee replacement indicated. Procedure performed: Total knee replacement. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_specific_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0012",
+      "member_id": "M1029",
+      "hospital_id": "H07",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-07-27",
+      "discharge_date": "2026-08-01",
+      "filed_date": "2026-08-06",
+      "los_days": 5,
+      "room_type": "General ward",
+      "room_rate": 1900,
+      "is_accident": false,
+      "bill": {
+        "room": 9500,
+        "professional": 16420,
+        "medicines": 6570,
+        "diagnostics": 3880,
+        "consumables": 2990,
+        "non_medical": 0
+      },
+      "claimed_amount": 39360,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Lotus Nursing Home, Pune. Patient Rohan Deshmukh, 65F. Admitted 2026-07-27, discharged 2026-08-01. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_network"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0013",
+      "member_id": "M1032",
+      "hospital_id": "H07",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-07-22",
+      "discharge_date": "2026-07-25",
+      "filed_date": "2026-08-06",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 2700,
+      "is_accident": false,
+      "bill": {
+        "room": 8100,
+        "professional": 24620,
+        "medicines": 9850,
+        "diagnostics": 5820,
+        "consumables": 4480,
+        "non_medical": 0
+      },
+      "claimed_amount": 52870,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Lotus Nursing Home, Pune. Patient Saanvi Joshi, 26M. Admitted 2026-07-22, discharged 2026-07-25. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_network"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0014",
+      "member_id": "M1004",
+      "hospital_id": "H05",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-06-27",
+      "discharge_date": "2026-07-01",
+      "filed_date": "2026-07-12",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 2700,
+      "is_accident": false,
+      "bill": {
+        "room": 10800,
+        "professional": 66720,
+        "medicines": 26690,
+        "diagnostics": 15770,
+        "consumables": 12130,
+        "non_medical": 0
+      },
+      "claimed_amount": 132110,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Rohan Verma, 60M. Admitted 2026-06-27, discharged 2026-07-01. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0015",
+      "member_id": "M1027",
+      "hospital_id": "H05",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-08-02",
+      "discharge_date": "2026-08-05",
+      "filed_date": "2026-08-15",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 5014,
+      "is_accident": false,
+      "bill": {
+        "room": 15040,
+        "professional": 34260,
+        "medicines": 13700,
+        "diagnostics": 8100,
+        "consumables": 6230,
+        "non_medical": 0
+      },
+      "claimed_amount": 77330,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Arjun Gupta, 62M. Admitted 2026-08-02, discharged 2026-08-05. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_room_rent"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0016",
+      "member_id": "M1088",
+      "hospital_id": "H04",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-07-30",
+      "discharge_date": "2026-08-04",
+      "filed_date": "2026-08-06",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 2700,
+      "is_accident": false,
+      "bill": {
+        "room": 13500,
+        "professional": 16650,
+        "medicines": 6660,
+        "diagnostics": 3940,
+        "consumables": 3030,
+        "non_medical": 0
+      },
+      "claimed_amount": 43780,
+      "documents": [
+        "claim_form",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Priya Iyer, 50M. Admitted 2026-07-30, discharged 2026-08-04. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "QUERY",
+      "scenario": "query_missing_documents"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0017",
+      "member_id": "M1018",
+      "hospital_id": "H06",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-08-02",
+      "discharge_date": "2026-08-07",
+      "filed_date": "2026-08-12",
+      "los_days": 5,
+      "room_type": "Private",
+      "room_rate": 6600,
+      "is_accident": false,
+      "bill": {
+        "room": 33000,
+        "professional": 15790,
+        "medicines": 6320,
+        "diagnostics": 3730,
+        "consumables": 2870,
+        "non_medical": 0
+      },
+      "claimed_amount": 61710,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Rahul Rao, 38M. Admitted 2026-08-02, discharged 2026-08-07. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_frequent_flag"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0018",
+      "member_id": "M1001",
+      "hospital_id": "H05",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-06-25",
+      "discharge_date": "2026-06-28",
+      "filed_date": "2026-07-01",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 1500,
+      "is_accident": false,
+      "bill": {
+        "room": 4500,
+        "professional": 30320,
+        "medicines": 12130,
+        "diagnostics": 7170,
+        "consumables": 5510,
+        "non_medical": 0
+      },
+      "claimed_amount": 59630,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Ishaan Gupta, 30F. Admitted 2026-06-25, discharged 2026-06-28. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0019",
+      "member_id": "M1070",
+      "hospital_id": "H04",
+      "procedure_code": "P102",
+      "diagnosis": "Cataract surgery indicated",
+      "admission_date": "2026-07-30",
+      "discharge_date": "2026-07-31",
+      "filed_date": "2026-08-13",
+      "los_days": 1,
+      "room_type": "Semi-private",
+      "room_rate": 3800,
+      "is_accident": false,
+      "bill": {
+        "room": 3800,
+        "professional": 42680,
+        "medicines": 17070,
+        "diagnostics": 10090,
+        "consumables": 7760,
+        "non_medical": 0
+      },
+      "claimed_amount": 81400,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Arjun Deshmukh, 50M. Admitted 2026-07-30, discharged 2026-07-31. Diagnosis: Cataract surgery indicated. Procedure performed: Cataract surgery. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_inflated_bill"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0020",
+      "member_id": "M1024",
+      "hospital_id": "H02",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-06-13",
+      "discharge_date": "2026-06-16",
+      "filed_date": "2026-06-18",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 4435,
+      "is_accident": false,
+      "bill": {
+        "room": 13300,
+        "professional": 24760,
+        "medicines": 9900,
+        "diagnostics": 5850,
+        "consumables": 4500,
+        "non_medical": 0
+      },
+      "claimed_amount": 58310,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Sneha Rao, 61F. Admitted 2026-06-13, discharged 2026-06-16. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_room_rent"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0021",
+      "member_id": "M1071",
+      "hospital_id": "H06",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-06-26",
+      "discharge_date": "2026-06-30",
+      "filed_date": "2026-07-06",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 8200,
+      "is_accident": false,
+      "bill": {
+        "room": 32800,
+        "professional": 157950,
+        "medicines": 63180,
+        "diagnostics": 37330,
+        "consumables": 28720,
+        "non_medical": 0
+      },
+      "claimed_amount": 319980,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Ishaan Deshmukh, 45M. Admitted 2026-06-26, discharged 2026-06-30. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_inflated_bill"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0022",
+      "member_id": "M1060",
+      "hospital_id": "H05",
+      "procedure_code": "P103",
+      "diagnosis": "Inguinal hernia repair indicated",
+      "admission_date": "2026-07-10",
+      "discharge_date": "2026-07-12",
+      "filed_date": "2026-07-17",
+      "los_days": 2,
+      "room_type": "Semi-private",
+      "room_rate": 4700,
+      "is_accident": false,
+      "bill": {
+        "room": 9400,
+        "professional": 32270,
+        "medicines": 12910,
+        "diagnostics": 7630,
+        "consumables": 5870,
+        "non_medical": 0
+      },
+      "claimed_amount": 68080,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Vikram Joshi, 60F. Admitted 2026-07-10, discharged 2026-07-12. Diagnosis: Inguinal hernia repair indicated. Procedure performed: Inguinal hernia repair. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_lapsed_policy"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0023",
+      "member_id": "M1052",
+      "hospital_id": "H06",
+      "procedure_code": "P105",
+      "diagnosis": "Coronary angioplasty indicated",
+      "admission_date": "2026-06-01",
+      "discharge_date": "2026-06-04",
+      "filed_date": "2026-06-10",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 7700,
+      "is_accident": false,
+      "bill": {
+        "room": 23100,
+        "professional": 112290,
+        "medicines": 44920,
+        "diagnostics": 26540,
+        "consumables": 20420,
+        "non_medical": 0
+      },
+      "claimed_amount": 227270,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Vikram Iyer, 25M. Admitted 2026-06-01, discharged 2026-06-04. Diagnosis: Coronary angioplasty indicated. Procedure performed: Coronary angioplasty. History: Known case of coronary artery disease since 2021. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_pre_existing"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0024",
+      "member_id": "M1078",
+      "hospital_id": "H05",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-06-28",
+      "discharge_date": "2026-07-02",
+      "filed_date": "2026-07-07",
+      "los_days": 4,
+      "room_type": "General ward",
+      "room_rate": 2000,
+      "is_accident": false,
+      "bill": {
+        "room": 8000,
+        "professional": 14320,
+        "medicines": 5730,
+        "diagnostics": 3380,
+        "consumables": 2600,
+        "non_medical": 0
+      },
+      "claimed_amount": 52030,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Rahul Mehta, 53F. Admitted 2026-06-28, discharged 2026-07-02. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_bill_tampering"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0025",
+      "member_id": "M1057",
+      "hospital_id": "H06",
+      "procedure_code": "P110",
+      "diagnosis": "Dental implant indicated",
+      "admission_date": "2026-07-04",
+      "discharge_date": "2026-07-05",
+      "filed_date": "2026-07-10",
+      "los_days": 1,
+      "room_type": "Semi-private",
+      "room_rate": 3600,
+      "is_accident": false,
+      "bill": {
+        "room": 3600,
+        "professional": 28980,
+        "medicines": 11590,
+        "diagnostics": 6850,
+        "consumables": 5270,
+        "non_medical": 0
+      },
+      "claimed_amount": 56290,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Isha Nair, 59F. Admitted 2026-07-04, discharged 2026-07-05. Diagnosis: Dental implant indicated. Procedure performed: Dental implant. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_exclusion"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0026",
+      "member_id": "M1033",
+      "hospital_id": "H07",
+      "procedure_code": "P102",
+      "diagnosis": "Cataract surgery indicated",
+      "admission_date": "2026-07-03",
+      "discharge_date": "2026-07-04",
+      "filed_date": "2026-07-08",
+      "los_days": 1,
+      "room_type": "Semi-private",
+      "room_rate": 3200,
+      "is_accident": false,
+      "bill": {
+        "room": 3200,
+        "professional": 17070,
+        "medicines": 6830,
+        "diagnostics": 4030,
+        "consumables": 3100,
+        "non_medical": 0
+      },
+      "claimed_amount": 34230,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Lotus Nursing Home, Pune. Patient Pooja Verma, 55F. Admitted 2026-07-03, discharged 2026-07-04. Diagnosis: Cataract surgery indicated. Procedure performed: Cataract surgery. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_network"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0027",
+      "member_id": "M1035",
+      "hospital_id": "H01",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-06-13",
+      "discharge_date": "2026-06-17",
+      "filed_date": "2026-06-29",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 3100,
+      "is_accident": false,
+      "bill": {
+        "room": 12400,
+        "professional": 13510,
+        "medicines": 5400,
+        "diagnostics": 3190,
+        "consumables": 2460,
+        "non_medical": 5560
+      },
+      "claimed_amount": 42520,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Vihaan Gupta, 39M. Admitted 2026-06-13, discharged 2026-06-17. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_medical"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0028",
+      "member_id": "M1083",
+      "hospital_id": "H01",
+      "procedure_code": "P104",
+      "diagnosis": "Total knee replacement indicated",
+      "admission_date": "2026-07-05",
+      "discharge_date": "2026-07-10",
+      "filed_date": "2026-07-15",
+      "los_days": 5,
+      "room_type": "General ward",
+      "room_rate": 1900,
+      "is_accident": false,
+      "bill": {
+        "room": 9500,
+        "professional": 164180,
+        "medicines": 65670,
+        "diagnostics": 38810,
+        "consumables": 29850,
+        "non_medical": 0
+      },
+      "claimed_amount": 308010,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Pooja Kulkarni, 65M. Admitted 2026-07-05, discharged 2026-07-10. Diagnosis: Total knee replacement indicated. Procedure performed: Total knee replacement. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_high_value"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0029",
+      "member_id": "M1042",
+      "hospital_id": "H01",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-08-05",
+      "discharge_date": "2026-08-10",
+      "filed_date": "2026-08-13",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 4700,
+      "is_accident": false,
+      "bill": {
+        "room": 23500,
+        "professional": 15070,
+        "medicines": 6030,
+        "diagnostics": 3560,
+        "consumables": 2740,
+        "non_medical": 0
+      },
+      "claimed_amount": 50900,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Vikram Joshi, 56M. Admitted 2026-08-05, discharged 2026-08-10. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_initial_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0030",
+      "member_id": "M1066",
+      "hospital_id": "H02",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-05-14",
+      "discharge_date": "2026-05-17",
+      "filed_date": "2026-05-24",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 4700,
+      "is_accident": false,
+      "bill": {
+        "room": 14100,
+        "professional": 25300,
+        "medicines": 10120,
+        "diagnostics": 5980,
+        "consumables": 4600,
+        "non_medical": 0
+      },
+      "claimed_amount": 60100,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Vikram Rao, 65F. Admitted 2026-05-14, discharged 2026-05-17. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_duplicate"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0031",
+      "member_id": "M1038",
+      "hospital_id": "H02",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-06-03",
+      "discharge_date": "2026-06-07",
+      "filed_date": "2026-06-20",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 5800,
+      "is_accident": false,
+      "bill": {
+        "room": 23200,
+        "professional": 63270,
+        "medicines": 25310,
+        "diagnostics": 14950,
+        "consumables": 11500,
+        "non_medical": 8790
+      },
+      "claimed_amount": 147020,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Pooja Joshi, 68M. Admitted 2026-06-03, discharged 2026-06-07. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_medical"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0032",
+      "member_id": "M1020",
+      "hospital_id": "H02",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-05-18",
+      "discharge_date": "2026-05-21",
+      "filed_date": "2026-06-02",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 4500,
+      "is_accident": false,
+      "bill": {
+        "room": 13500,
+        "professional": 33110,
+        "medicines": 13240,
+        "diagnostics": 7830,
+        "consumables": 6020,
+        "non_medical": 0
+      },
+      "claimed_amount": 73700,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Ishaan Rao, 31F. Admitted 2026-05-18, discharged 2026-05-21. Diagnosis: Cholecystectomy indicated. Underwent treatment as per standard protocol. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_ambiguous_summary"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0033",
+      "member_id": "M1030",
+      "hospital_id": "H07",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-07-24",
+      "discharge_date": "2026-07-27",
+      "filed_date": "2026-07-30",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 4100,
+      "is_accident": false,
+      "bill": {
+        "room": 12300,
+        "professional": 30310,
+        "medicines": 12120,
+        "diagnostics": 7160,
+        "consumables": 5510,
+        "non_medical": 0
+      },
+      "claimed_amount": 67400,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Lotus Nursing Home, Pune. Patient Meera Deshmukh, 51F. Admitted 2026-07-24, discharged 2026-07-27. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_network"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0034",
+      "member_id": "M1082",
+      "hospital_id": "H03",
+      "procedure_code": "P104",
+      "diagnosis": "Total knee replacement indicated",
+      "admission_date": "2026-07-05",
+      "discharge_date": "2026-07-10",
+      "filed_date": "2026-07-16",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 3900,
+      "is_accident": false,
+      "bill": {
+        "room": 19500,
+        "professional": 164650,
+        "medicines": 65860,
+        "diagnostics": 38920,
+        "consumables": 29940,
+        "non_medical": 0
+      },
+      "claimed_amount": 318870,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Meera Kulkarni, 33F. Admitted 2026-07-05, discharged 2026-07-10. Diagnosis: Total knee replacement indicated. Procedure performed: Total knee replacement. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_high_value"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0035",
+      "member_id": "M1043",
+      "hospital_id": "H05",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-07-18",
+      "discharge_date": "2026-07-21",
+      "filed_date": "2026-08-04",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 2000,
+      "is_accident": false,
+      "bill": {
+        "room": 6000,
+        "professional": 26400,
+        "medicines": 10560,
+        "diagnostics": 6240,
+        "consumables": 4800,
+        "non_medical": 0
+      },
+      "claimed_amount": 54000,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Neha Sharma, 43F. Admitted 2026-07-18, discharged 2026-07-21. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_initial_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0036",
+      "member_id": "M1064",
+      "hospital_id": "H02",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-05-17",
+      "discharge_date": "2026-05-21",
+      "filed_date": "2026-05-23",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 4800,
+      "is_accident": false,
+      "bill": {
+        "room": 19200,
+        "professional": 15690,
+        "medicines": 6270,
+        "diagnostics": 3710,
+        "consumables": 2850,
+        "non_medical": 0
+      },
+      "claimed_amount": 47720,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Rohan Patil, 43M. Admitted 2026-05-17, discharged 2026-05-21. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_duplicate"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0037",
+      "member_id": "M1072",
+      "hospital_id": "H09",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-05-12",
+      "discharge_date": "2026-05-15",
+      "filed_date": "2026-05-18",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 5000,
+      "is_accident": false,
+      "bill": {
+        "room": 15000,
+        "professional": 56630,
+        "medicines": 22650,
+        "diagnostics": 13380,
+        "consumables": 10300,
+        "non_medical": 0
+      },
+      "claimed_amount": 117960,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - SunRise Multispeciality, Pune. Patient Sneha Deshmukh, 30M. Admitted 2026-05-12, discharged 2026-05-15. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_watchlist_hospital"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0038",
+      "member_id": "M1036",
+      "hospital_id": "H01",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-06-27",
+      "discharge_date": "2026-07-01",
+      "filed_date": "2026-07-03",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 5900,
+      "is_accident": false,
+      "bill": {
+        "room": 23600,
+        "professional": 64850,
+        "medicines": 25940,
+        "diagnostics": 15330,
+        "consumables": 11790,
+        "non_medical": 3300
+      },
+      "claimed_amount": 144810,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Isha Nair, 56M. Admitted 2026-06-27, discharged 2026-07-01. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_medical"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0039",
+      "member_id": "M1049",
+      "hospital_id": "H06",
+      "procedure_code": "P104",
+      "diagnosis": "Total knee replacement indicated",
+      "admission_date": "2026-05-09",
+      "discharge_date": "2026-05-14",
+      "filed_date": "2026-05-23",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 2700,
+      "is_accident": false,
+      "bill": {
+        "room": 13500,
+        "professional": 120550,
+        "medicines": 48220,
+        "diagnostics": 28490,
+        "consumables": 21920,
+        "non_medical": 0
+      },
+      "claimed_amount": 232680,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Aarav Nair, 27F. Admitted 2026-05-09, discharged 2026-05-14. Diagnosis: Total knee replacement indicated. Procedure performed: Total knee replacement. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_specific_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0040",
+      "member_id": "M1056",
+      "hospital_id": "H04",
+      "procedure_code": "P109",
+      "diagnosis": "Cosmetic rhinoplasty indicated",
+      "admission_date": "2026-06-14",
+      "discharge_date": "2026-06-16",
+      "filed_date": "2026-06-22",
+      "los_days": 2,
+      "room_type": "Private",
+      "room_rate": 7500,
+      "is_accident": false,
+      "bill": {
+        "room": 15000,
+        "professional": 59660,
+        "medicines": 23860,
+        "diagnostics": 14100,
+        "consumables": 10850,
+        "non_medical": 0
+      },
+      "claimed_amount": 123470,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Vikram Sharma, 59M. Admitted 2026-06-14, discharged 2026-06-16. Diagnosis: Cosmetic rhinoplasty indicated. Procedure performed: Cosmetic rhinoplasty. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_exclusion"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0041",
+      "member_id": "M1016",
+      "hospital_id": "H04",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-07-04",
+      "discharge_date": "2026-07-08",
+      "filed_date": "2026-07-12",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 7600,
+      "is_accident": false,
+      "bill": {
+        "room": 30400,
+        "professional": 15270,
+        "medicines": 6110,
+        "diagnostics": 3610,
+        "consumables": 2780,
+        "non_medical": 0
+      },
+      "claimed_amount": 58170,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Vikram Patil, 31F. Admitted 2026-07-04, discharged 2026-07-08. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_borderline"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0042",
+      "member_id": "M1010",
+      "hospital_id": "H04",
+      "procedure_code": "P102",
+      "diagnosis": "Cataract surgery indicated",
+      "admission_date": "2026-06-03",
+      "discharge_date": "2026-06-04",
+      "filed_date": "2026-06-13",
+      "los_days": 1,
+      "room_type": "Semi-private",
+      "room_rate": 2800,
+      "is_accident": false,
+      "bill": {
+        "room": 2800,
+        "professional": 15310,
+        "medicines": 6130,
+        "diagnostics": 3620,
+        "consumables": 2780,
+        "non_medical": 0
+      },
+      "claimed_amount": 30640,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Kabir Shah, 39F. Admitted 2026-06-03, discharged 2026-06-04. Diagnosis: Cataract surgery indicated. Procedure performed: Cataract surgery. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0043",
+      "member_id": "M1008",
+      "hospital_id": "H06",
+      "procedure_code": "P103",
+      "diagnosis": "Inguinal hernia repair indicated",
+      "admission_date": "2026-06-23",
+      "discharge_date": "2026-06-25",
+      "filed_date": "2026-06-27",
+      "los_days": 2,
+      "room_type": "Private",
+      "room_rate": 7500,
+      "is_accident": false,
+      "bill": {
+        "room": 15000,
+        "professional": 32970,
+        "medicines": 13190,
+        "diagnostics": 7790,
+        "consumables": 5990,
+        "non_medical": 0
+      },
+      "claimed_amount": 74940,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Riya Nair, 28M. Admitted 2026-06-23, discharged 2026-06-25. Diagnosis: Inguinal hernia repair indicated. Procedure performed: Inguinal hernia repair. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0044",
+      "member_id": "M1023",
+      "hospital_id": "H05",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-07-19",
+      "discharge_date": "2026-07-23",
+      "filed_date": "2026-08-02",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 8503,
+      "is_accident": false,
+      "bill": {
+        "room": 34010,
+        "professional": 61580,
+        "medicines": 24630,
+        "diagnostics": 14560,
+        "consumables": 11200,
+        "non_medical": 0
+      },
+      "claimed_amount": 145980,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Diya Sharma, 40M. Admitted 2026-07-19, discharged 2026-07-23. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_room_rent"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0045",
+      "member_id": "M1025",
+      "hospital_id": "H05",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-06-10",
+      "discharge_date": "2026-06-14",
+      "filed_date": "2026-06-26",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 5505,
+      "is_accident": false,
+      "bill": {
+        "room": 22020,
+        "professional": 14000,
+        "medicines": 5600,
+        "diagnostics": 3310,
+        "consumables": 2550,
+        "non_medical": 0
+      },
+      "claimed_amount": 47480,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Kabir Deshmukh, 33F. Admitted 2026-06-10, discharged 2026-06-14. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_room_rent"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0046",
+      "member_id": "M1011",
+      "hospital_id": "H02",
+      "procedure_code": "P103",
+      "diagnosis": "Inguinal hernia repair indicated",
+      "admission_date": "2026-06-15",
+      "discharge_date": "2026-06-17",
+      "filed_date": "2026-06-21",
+      "los_days": 2,
+      "room_type": "Private",
+      "room_rate": 6300,
+      "is_accident": false,
+      "bill": {
+        "room": 12600,
+        "professional": 28810,
+        "medicines": 11520,
+        "diagnostics": 6810,
+        "consumables": 5240,
+        "non_medical": 0
+      },
+      "claimed_amount": 64980,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Amit Gupta, 41F. Admitted 2026-06-15, discharged 2026-06-17. Diagnosis: Inguinal hernia repair indicated. Procedure performed: Inguinal hernia repair. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0047",
+      "member_id": "M1034",
+      "hospital_id": "H01",
+      "procedure_code": "P103",
+      "diagnosis": "Inguinal hernia repair indicated",
+      "admission_date": "2026-06-12",
+      "discharge_date": "2026-06-14",
+      "filed_date": "2026-06-24",
+      "los_days": 2,
+      "room_type": "General ward",
+      "room_rate": 1900,
+      "is_accident": false,
+      "bill": {
+        "room": 3800,
+        "professional": 29790,
+        "medicines": 11920,
+        "diagnostics": 7040,
+        "consumables": 5420,
+        "non_medical": 5780
+      },
+      "claimed_amount": 63750,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Ishaan Joshi, 29M. Admitted 2026-06-12, discharged 2026-06-14. Diagnosis: Inguinal hernia repair indicated. Procedure performed: Inguinal hernia repair. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_medical"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0048",
+      "member_id": "M1058",
+      "hospital_id": "H02",
+      "procedure_code": "P109",
+      "diagnosis": "Cosmetic rhinoplasty indicated",
+      "admission_date": "2026-06-02",
+      "discharge_date": "2026-06-04",
+      "filed_date": "2026-06-11",
+      "los_days": 2,
+      "room_type": "Semi-private",
+      "room_rate": 3900,
+      "is_accident": false,
+      "bill": {
+        "room": 7800,
+        "professional": 57280,
+        "medicines": 22910,
+        "diagnostics": 13540,
+        "consumables": 10420,
+        "non_medical": 0
+      },
+      "claimed_amount": 111950,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Rahul Nair, 51M. Admitted 2026-06-02, discharged 2026-06-04. Diagnosis: Cosmetic rhinoplasty indicated. Procedure performed: Cosmetic rhinoplasty. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_exclusion"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0049",
+      "member_id": "M1003",
+      "hospital_id": "H02",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-07-29",
+      "discharge_date": "2026-08-02",
+      "filed_date": "2026-08-13",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 6800,
+      "is_accident": false,
+      "bill": {
+        "room": 27200,
+        "professional": 15170,
+        "medicines": 6070,
+        "diagnostics": 3590,
+        "consumables": 2760,
+        "non_medical": 0
+      },
+      "claimed_amount": 54790,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Vihaan Kulkarni, 26M. Admitted 2026-07-29, discharged 2026-08-02. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0050",
+      "member_id": "M1076",
+      "hospital_id": "H01",
+      "procedure_code": "P105",
+      "diagnosis": "Chest pain, evaluation",
+      "admission_date": "2026-07-31",
+      "discharge_date": "2026-08-03",
+      "filed_date": "2026-08-06",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 2300,
+      "is_accident": false,
+      "bill": {
+        "room": 6900,
+        "professional": 114030,
+        "medicines": 45610,
+        "diagnostics": 26950,
+        "consumables": 20730,
+        "non_medical": 0
+      },
+      "claimed_amount": 214220,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Rahul Joshi, 43M. Admitted 2026-07-31, discharged 2026-08-03. Diagnosis: Chest pain, evaluation. Procedure performed: Diagnostic coronary angiography. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_procedure_mismatch"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0051",
+      "member_id": "M1081",
+      "hospital_id": "H06",
+      "procedure_code": "P104",
+      "diagnosis": "Total knee replacement indicated",
+      "admission_date": "2026-05-29",
+      "discharge_date": "2026-06-03",
+      "filed_date": "2026-06-12",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 4700,
+      "is_accident": false,
+      "bill": {
+        "room": 23500,
+        "professional": 166170,
+        "medicines": 66470,
+        "diagnostics": 39280,
+        "consumables": 30210,
+        "non_medical": 0
+      },
+      "claimed_amount": 325630,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Isha Joshi, 41F. Admitted 2026-05-29, discharged 2026-06-03. Diagnosis: Total knee replacement indicated. Procedure performed: Total knee replacement. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_high_value"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0052",
+      "member_id": "M1085",
+      "hospital_id": "H03",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-05-22",
+      "discharge_date": "2026-05-25",
+      "filed_date": "2026-07-03",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 1700,
+      "is_accident": false,
+      "bill": {
+        "room": 5100,
+        "professional": 31910,
+        "medicines": 12760,
+        "diagnostics": 7540,
+        "consumables": 5800,
+        "non_medical": 0
+      },
+      "claimed_amount": 63110,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Aarav Patil, 64F. Admitted 2026-05-22, discharged 2026-05-25. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_late_filing"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0053",
+      "member_id": "M1031",
+      "hospital_id": "H08",
+      "procedure_code": "P103",
+      "diagnosis": "Inguinal hernia repair indicated",
+      "admission_date": "2026-06-20",
+      "discharge_date": "2026-06-22",
+      "filed_date": "2026-06-25",
+      "los_days": 2,
+      "room_type": "General ward",
+      "room_rate": 2300,
+      "is_accident": false,
+      "bill": {
+        "room": 4600,
+        "professional": 30080,
+        "medicines": 12030,
+        "diagnostics": 7110,
+        "consumables": 5470,
+        "non_medical": 0
+      },
+      "claimed_amount": 59290,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - City Care Clinic, Nashik. Patient Sneha Nair, 25F. Admitted 2026-06-20, discharged 2026-06-22. Diagnosis: Inguinal hernia repair indicated. Procedure performed: Inguinal hernia repair. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_network"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0054",
+      "member_id": "M1054",
+      "hospital_id": "H03",
+      "procedure_code": "P112",
+      "diagnosis": "Diabetic ketoacidosis management indicated",
+      "admission_date": "2026-06-29",
+      "discharge_date": "2026-07-03",
+      "filed_date": "2026-07-15",
+      "los_days": 4,
+      "room_type": "General ward",
+      "room_rate": 2100,
+      "is_accident": false,
+      "bill": {
+        "room": 8400,
+        "professional": 24160,
+        "medicines": 9670,
+        "diagnostics": 5710,
+        "consumables": 4390,
+        "non_medical": 0
+      },
+      "claimed_amount": 52330,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Riya Patil, 47F. Admitted 2026-06-29, discharged 2026-07-03. Diagnosis: Diabetic ketoacidosis management indicated. Procedure performed: Diabetic ketoacidosis management. History: Known case of Type 2 diabetes since 2018. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_pre_existing"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0055",
+      "member_id": "M1013",
+      "hospital_id": "H04",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-06-19",
+      "discharge_date": "2026-06-23",
+      "filed_date": "2026-07-01",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 8600,
+      "is_accident": false,
+      "bill": {
+        "room": 34400,
+        "professional": 12540,
+        "medicines": 5010,
+        "diagnostics": 2960,
+        "consumables": 2280,
+        "non_medical": 0
+      },
+      "claimed_amount": 57190,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Kabir Shah, 56M. Admitted 2026-06-19, discharged 2026-06-23. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0056",
+      "member_id": "M1061",
+      "hospital_id": "H04",
+      "procedure_code": "P102",
+      "diagnosis": "Cataract surgery indicated",
+      "admission_date": "2026-07-25",
+      "discharge_date": "2026-07-26",
+      "filed_date": "2026-08-09",
+      "los_days": 1,
+      "room_type": "General ward",
+      "room_rate": 1700,
+      "is_accident": false,
+      "bill": {
+        "room": 1700,
+        "professional": 17710,
+        "medicines": 7090,
+        "diagnostics": 4190,
+        "consumables": 3220,
+        "non_medical": 0
+      },
+      "claimed_amount": 33910,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Sneha Iyer, 43M. Admitted 2026-07-25, discharged 2026-07-26. Diagnosis: Cataract surgery indicated. Procedure performed: Cataract surgery. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_lapsed_policy"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0057",
+      "member_id": "M1059",
+      "hospital_id": "H04",
+      "procedure_code": "P110",
+      "diagnosis": "Dental implant indicated",
+      "admission_date": "2026-05-26",
+      "discharge_date": "2026-05-27",
+      "filed_date": "2026-06-06",
+      "los_days": 1,
+      "room_type": "Semi-private",
+      "room_rate": 4100,
+      "is_accident": false,
+      "bill": {
+        "room": 4100,
+        "professional": 30160,
+        "medicines": 12060,
+        "diagnostics": 7130,
+        "consumables": 5480,
+        "non_medical": 0
+      },
+      "claimed_amount": 58930,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Priya Joshi, 60M. Admitted 2026-05-26, discharged 2026-05-27. Diagnosis: Dental implant indicated. Procedure performed: Dental implant. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_exclusion"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0058",
+      "member_id": "M1073",
+      "hospital_id": "H10",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-05-26",
+      "discharge_date": "2026-05-30",
+      "filed_date": "2026-06-08",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 2700,
+      "is_accident": false,
+      "bill": {
+        "room": 10800,
+        "professional": 112630,
+        "medicines": 45050,
+        "diagnostics": 26620,
+        "consumables": 20480,
+        "non_medical": 0
+      },
+      "claimed_amount": 215580,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - MedCore Hospital, Thane. Patient Isha Iyer, 29M. Admitted 2026-05-26, discharged 2026-05-30. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_watchlist_hospital"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0059",
+      "member_id": "M1040",
+      "hospital_id": "H04",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-05-12",
+      "discharge_date": "2026-05-15",
+      "filed_date": "2026-05-21",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 9000,
+      "is_accident": false,
+      "bill": {
+        "room": 27000,
+        "professional": 47340,
+        "medicines": 18940,
+        "diagnostics": 11190,
+        "consumables": 8610,
+        "non_medical": 0
+      },
+      "claimed_amount": 113080,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Arjun Kulkarni, 68F. Admitted 2026-05-12, discharged 2026-05-15. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_sublimit"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0060",
+      "member_id": "M1015",
+      "hospital_id": "H05",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-07-23",
+      "discharge_date": "2026-07-27",
+      "filed_date": "2026-08-08",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 2800,
+      "is_accident": false,
+      "bill": {
+        "room": 11200,
+        "professional": 19830,
+        "medicines": 7930,
+        "diagnostics": 4690,
+        "consumables": 3610,
+        "non_medical": 0
+      },
+      "claimed_amount": 47260,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Karan Patil, 47M. Admitted 2026-07-23, discharged 2026-07-27. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_borderline"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0061",
+      "member_id": "M1055",
+      "hospital_id": "H06",
+      "procedure_code": "P112",
+      "diagnosis": "Diabetic ketoacidosis management indicated",
+      "admission_date": "2026-06-30",
+      "discharge_date": "2026-07-04",
+      "filed_date": "2026-07-17",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 2800,
+      "is_accident": false,
+      "bill": {
+        "room": 11200,
+        "professional": 24080,
+        "medicines": 9630,
+        "diagnostics": 5690,
+        "consumables": 4380,
+        "non_medical": 0
+      },
+      "claimed_amount": 54980,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Diya Mehta, 51M. Admitted 2026-06-30, discharged 2026-07-04. Diagnosis: Diabetic ketoacidosis management indicated. Procedure performed: Diabetic ketoacidosis management. History: Known case of Type 2 diabetes since 2017. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_pre_existing"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0062",
+      "member_id": "M1051",
+      "hospital_id": "H03",
+      "procedure_code": "P105",
+      "diagnosis": "Coronary angioplasty indicated",
+      "admission_date": "2026-06-02",
+      "discharge_date": "2026-06-05",
+      "filed_date": "2026-06-17",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 4800,
+      "is_accident": false,
+      "bill": {
+        "room": 14400,
+        "professional": 106750,
+        "medicines": 42700,
+        "diagnostics": 25230,
+        "consumables": 19410,
+        "non_medical": 0
+      },
+      "claimed_amount": 208490,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Ishaan Verma, 29M. Admitted 2026-06-02, discharged 2026-06-05. Diagnosis: Coronary angioplasty indicated. Procedure performed: Coronary angioplasty. History: Known case of coronary artery disease since 2019. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_pre_existing"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0063",
+      "member_id": "M1068",
+      "hospital_id": "H02",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-06-02",
+      "discharge_date": "2026-06-05",
+      "filed_date": "2026-06-11",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 7400,
+      "is_accident": false,
+      "bill": {
+        "room": 22200,
+        "professional": 59010,
+        "medicines": 23610,
+        "diagnostics": 13950,
+        "consumables": 10730,
+        "non_medical": 0
+      },
+      "claimed_amount": 129500,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Vikram Kulkarni, 43M. Admitted 2026-06-02, discharged 2026-06-05. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_inflated_bill"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0064",
+      "member_id": "M1087",
+      "hospital_id": "H06",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-06-14",
+      "discharge_date": "2026-06-18",
+      "filed_date": "2026-06-30",
+      "los_days": 4,
+      "room_type": "General ward",
+      "room_rate": 2100,
+      "is_accident": false,
+      "bill": {
+        "room": 8400,
+        "professional": 61050,
+        "medicines": 24420,
+        "diagnostics": 14430,
+        "consumables": 11100,
+        "non_medical": 0
+      },
+      "claimed_amount": 119400,
+      "documents": [
+        "claim_form",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Karan Deshmukh, 64M. Admitted 2026-06-14, discharged 2026-06-18. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "QUERY",
+      "scenario": "query_missing_documents"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0065",
+      "member_id": "M1089",
+      "hospital_id": "H01",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-07-16",
+      "discharge_date": "2026-07-19",
+      "filed_date": "2026-07-31",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 2300,
+      "is_accident": false,
+      "bill": {
+        "room": 6900,
+        "professional": 22970,
+        "medicines": 9190,
+        "diagnostics": 5430,
+        "consumables": 4180,
+        "non_medical": 0
+      },
+      "claimed_amount": 48670,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Neha Verma, 47F. Admitted 2026-07-16, discharged 2026-07-19. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "QUERY",
+      "scenario": "query_missing_documents"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0066",
+      "member_id": "M1075",
+      "hospital_id": "H03",
+      "procedure_code": "P105",
+      "diagnosis": "Chest pain, evaluation",
+      "admission_date": "2026-07-29",
+      "discharge_date": "2026-08-01",
+      "filed_date": "2026-08-12",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 4900,
+      "is_accident": false,
+      "bill": {
+        "room": 14700,
+        "professional": 115560,
+        "medicines": 46220,
+        "diagnostics": 27310,
+        "consumables": 21010,
+        "non_medical": 0
+      },
+      "claimed_amount": 224800,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Diya Shah, 28F. Admitted 2026-07-29, discharged 2026-08-01. Diagnosis: Chest pain, evaluation. Procedure performed: Diagnostic coronary angiography. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_procedure_mismatch"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0067",
+      "member_id": "M1007",
+      "hospital_id": "H05",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-07-21",
+      "discharge_date": "2026-07-24",
+      "filed_date": "2026-07-31",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 2400,
+      "is_accident": false,
+      "bill": {
+        "room": 7200,
+        "professional": 33320,
+        "medicines": 13330,
+        "diagnostics": 7880,
+        "consumables": 6060,
+        "non_medical": 0
+      },
+      "claimed_amount": 67790,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Fortis Mulund, Mumbai. Patient Rahul Deshmukh, 55F. Admitted 2026-07-21, discharged 2026-07-24. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0068",
+      "member_id": "M1041",
+      "hospital_id": "H03",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-06-09",
+      "discharge_date": "2026-06-12",
+      "filed_date": "2026-06-16",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 4500,
+      "is_accident": false,
+      "bill": {
+        "room": 13500,
+        "professional": 35750,
+        "medicines": 14300,
+        "diagnostics": 8450,
+        "consumables": 6500,
+        "non_medical": 0
+      },
+      "claimed_amount": 78500,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Rahul Gupta, 44M. Admitted 2026-06-09, discharged 2026-06-12. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_sublimit"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0069",
+      "member_id": "M1062",
+      "hospital_id": "H02",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-06-06",
+      "discharge_date": "2026-06-09",
+      "filed_date": "2026-06-19",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 2800,
+      "is_accident": false,
+      "bill": {
+        "room": 8400,
+        "professional": 30970,
+        "medicines": 12390,
+        "diagnostics": 7320,
+        "consumables": 5630,
+        "non_medical": 0
+      },
+      "claimed_amount": 64710,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Neha Gupta, 53F. Admitted 2026-06-06, discharged 2026-06-09. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_lapsed_policy"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0070",
+      "member_id": "M1006",
+      "hospital_id": "H03",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-07-13",
+      "discharge_date": "2026-07-17",
+      "filed_date": "2026-07-20",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 7200,
+      "is_accident": false,
+      "bill": {
+        "room": 28800,
+        "professional": 65050,
+        "medicines": 26020,
+        "diagnostics": 15370,
+        "consumables": 11830,
+        "non_medical": 0
+      },
+      "claimed_amount": 147070,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Ishaan Verma, 43F. Admitted 2026-07-13, discharged 2026-07-17. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0071",
+      "member_id": "M1017",
+      "hospital_id": "H03",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-07-23",
+      "discharge_date": "2026-07-28",
+      "filed_date": "2026-08-07",
+      "los_days": 5,
+      "room_type": "Private",
+      "room_rate": 8200,
+      "is_accident": false,
+      "bill": {
+        "room": 41000,
+        "professional": 11870,
+        "medicines": 4750,
+        "diagnostics": 2810,
+        "consumables": 2160,
+        "non_medical": 0
+      },
+      "claimed_amount": 62590,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Vikram Shah, 34M. Admitted 2026-07-23, discharged 2026-07-28. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_borderline"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0072",
+      "member_id": "M1039",
+      "hospital_id": "H04",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-05-16",
+      "discharge_date": "2026-05-19",
+      "filed_date": "2026-05-22",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 4500,
+      "is_accident": false,
+      "bill": {
+        "room": 13500,
+        "professional": 35670,
+        "medicines": 14270,
+        "diagnostics": 8430,
+        "consumables": 6490,
+        "non_medical": 0
+      },
+      "claimed_amount": 78360,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Vihaan Deshmukh, 24M. Admitted 2026-05-16, discharged 2026-05-19. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_sublimit"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0073",
+      "member_id": "M1026",
+      "hospital_id": "H01",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-05-31",
+      "discharge_date": "2026-06-04",
+      "filed_date": "2026-06-14",
+      "los_days": 4,
+      "room_type": "Private",
+      "room_rate": 7126,
+      "is_accident": false,
+      "bill": {
+        "room": 28500,
+        "professional": 63350,
+        "medicines": 25340,
+        "diagnostics": 14970,
+        "consumables": 11520,
+        "non_medical": 0
+      },
+      "claimed_amount": 143680,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Karan Sharma, 39M. Admitted 2026-05-31, discharged 2026-06-04. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_room_rent"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0074",
+      "member_id": "M1063",
+      "hospital_id": "H06",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-05-10",
+      "discharge_date": "2026-05-14",
+      "filed_date": "2026-05-18",
+      "los_days": 4,
+      "room_type": "General ward",
+      "room_rate": 1700,
+      "is_accident": false,
+      "bill": {
+        "room": 6800,
+        "professional": 65370,
+        "medicines": 26150,
+        "diagnostics": 15450,
+        "consumables": 11890,
+        "non_medical": 0
+      },
+      "claimed_amount": 125660,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Karan Sharma, 24M. Admitted 2026-05-10, discharged 2026-05-14. Diagnosis: Fracture fixation (ORIF) indicated. Procedure performed: Fracture fixation (ORIF). History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_duplicate"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0075",
+      "member_id": "M1050",
+      "hospital_id": "H01",
+      "procedure_code": "P103",
+      "diagnosis": "Inguinal hernia repair indicated",
+      "admission_date": "2026-06-29",
+      "discharge_date": "2026-07-01",
+      "filed_date": "2026-07-04",
+      "los_days": 2,
+      "room_type": "Private",
+      "room_rate": 7500,
+      "is_accident": false,
+      "bill": {
+        "room": 15000,
+        "professional": 30610,
+        "medicines": 12250,
+        "diagnostics": 7240,
+        "consumables": 5570,
+        "non_medical": 0
+      },
+      "claimed_amount": 70670,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Rohan Gupta, 36F. Admitted 2026-06-29, discharged 2026-07-01. Diagnosis: Inguinal hernia repair indicated. Procedure performed: Inguinal hernia repair. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_specific_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0076",
+      "member_id": "M1014",
+      "hospital_id": "H01",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-07-23",
+      "discharge_date": "2026-07-28",
+      "filed_date": "2026-07-30",
+      "los_days": 5,
+      "room_type": "General ward",
+      "room_rate": 2500,
+      "is_accident": false,
+      "bill": {
+        "room": 12500,
+        "professional": 15430,
+        "medicines": 6170,
+        "diagnostics": 3650,
+        "consumables": 2810,
+        "non_medical": 0
+      },
+      "claimed_amount": 40560,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Vihaan Kulkarni, 28M. Admitted 2026-07-23, discharged 2026-07-28. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0077",
+      "member_id": "M1009",
+      "hospital_id": "H03",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-05-08",
+      "discharge_date": "2026-05-13",
+      "filed_date": "2026-05-16",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 4400,
+      "is_accident": false,
+      "bill": {
+        "room": 22000,
+        "professional": 14720,
+        "medicines": 5890,
+        "diagnostics": 3480,
+        "consumables": 2680,
+        "non_medical": 0
+      },
+      "claimed_amount": 48770,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Jehangir Medical Centre, Pune. Patient Sneha Joshi, 48F. Admitted 2026-05-08, discharged 2026-05-13. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0078",
+      "member_id": "M1084",
+      "hospital_id": "H02",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-05-30",
+      "discharge_date": "2026-06-02",
+      "filed_date": "2026-07-21",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 8900,
+      "is_accident": false,
+      "bill": {
+        "room": 26700,
+        "professional": 26300,
+        "medicines": 10520,
+        "diagnostics": 6220,
+        "consumables": 4780,
+        "non_medical": 0
+      },
+      "claimed_amount": 74520,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Meera Patil, 27M. Admitted 2026-05-30, discharged 2026-06-02. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_late_filing"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0079",
+      "member_id": "M1067",
+      "hospital_id": "H01",
+      "procedure_code": "P103",
+      "diagnosis": "Inguinal hernia repair indicated",
+      "admission_date": "2026-07-07",
+      "discharge_date": "2026-07-09",
+      "filed_date": "2026-07-22",
+      "los_days": 2,
+      "room_type": "Semi-private",
+      "room_rate": 4000,
+      "is_accident": false,
+      "bill": {
+        "room": 8000,
+        "professional": 84320,
+        "medicines": 33730,
+        "diagnostics": 19930,
+        "consumables": 15330,
+        "non_medical": 0
+      },
+      "claimed_amount": 161310,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Rahul Shah, 50F. Admitted 2026-07-07, discharged 2026-07-09. Diagnosis: Inguinal hernia repair indicated. Procedure performed: Inguinal hernia repair. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_inflated_bill"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0080",
+      "member_id": "M1021",
+      "hospital_id": "H01",
+      "procedure_code": "P111",
+      "diagnosis": "Fracture fixation (ORIF) indicated",
+      "admission_date": "2026-06-24",
+      "discharge_date": "2026-06-28",
+      "filed_date": "2026-07-07",
+      "los_days": 4,
+      "room_type": "General ward",
+      "room_rate": 2300,
+      "is_accident": false,
+      "bill": {
+        "room": 9200,
+        "professional": 60370,
+        "medicines": 24150,
+        "diagnostics": 14270,
+        "consumables": 10980,
+        "non_medical": 0
+      },
+      "claimed_amount": 118970,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Sneha Iyer, 29M. Admitted 2026-06-24, discharged 2026-06-28. Diagnosis: Fracture fixation (ORIF) indicated. Underwent treatment as per standard protocol. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_ambiguous_summary"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0081",
+      "member_id": "M1037",
+      "hospital_id": "H06",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-08-03",
+      "discharge_date": "2026-08-07",
+      "filed_date": "2026-08-19",
+      "los_days": 4,
+      "room_type": "Semi-private",
+      "room_rate": 2800,
+      "is_accident": false,
+      "bill": {
+        "room": 11200,
+        "professional": 14980,
+        "medicines": 5990,
+        "diagnostics": 3540,
+        "consumables": 2720,
+        "non_medical": 6540
+      },
+      "claimed_amount": 44970,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Diya Gupta, 54M. Admitted 2026-08-03, discharged 2026-08-07. Diagnosis: Dengue treatment indicated. Procedure performed: Dengue treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "PARTIAL",
+      "scenario": "partial_non_medical"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0082",
+      "member_id": "M1045",
+      "hospital_id": "H01",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-06-01",
+      "discharge_date": "2026-06-06",
+      "filed_date": "2026-06-10",
+      "los_days": 5,
+      "room_type": "Semi-private",
+      "room_rate": 4400,
+      "is_accident": false,
+      "bill": {
+        "room": 22000,
+        "professional": 14930,
+        "medicines": 5970,
+        "diagnostics": 3530,
+        "consumables": 2710,
+        "non_medical": 0
+      },
+      "claimed_amount": 49140,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Kabir Gupta, 56M. Admitted 2026-06-01, discharged 2026-06-06. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_initial_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0083",
+      "member_id": "M1019",
+      "hospital_id": "H02",
+      "procedure_code": "P103",
+      "diagnosis": "Inguinal hernia repair indicated",
+      "admission_date": "2026-05-31",
+      "discharge_date": "2026-06-02",
+      "filed_date": "2026-06-11",
+      "los_days": 2,
+      "room_type": "Private",
+      "room_rate": 7500,
+      "is_accident": false,
+      "bill": {
+        "room": 15000,
+        "professional": 31400,
+        "medicines": 12560,
+        "diagnostics": 7420,
+        "consumables": 5710,
+        "non_medical": 0
+      },
+      "claimed_amount": 72090,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Priya Patil, 38M. Admitted 2026-05-31, discharged 2026-06-02. Diagnosis: Inguinal hernia repair indicated. Procedure performed: Inguinal hernia repair. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_frequent_flag"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0084",
+      "member_id": "M1022",
+      "hospital_id": "H06",
+      "procedure_code": "P107",
+      "diagnosis": "Dengue treatment indicated",
+      "admission_date": "2026-05-14",
+      "discharge_date": "2026-05-18",
+      "filed_date": "2026-05-28",
+      "los_days": 4,
+      "room_type": "General ward",
+      "room_rate": 1500,
+      "is_accident": false,
+      "bill": {
+        "room": 6000,
+        "professional": 15860,
+        "medicines": 6340,
+        "diagnostics": 3750,
+        "consumables": 2880,
+        "non_medical": 0
+      },
+      "claimed_amount": 34830,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Narayana Health City, Bengaluru. Patient Priya Deshmukh, 59M. Admitted 2026-05-14, discharged 2026-05-18. Diagnosis: Dengue treatment indicated. Underwent treatment as per standard protocol. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_ambiguous_summary"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0085",
+      "member_id": "M1065",
+      "hospital_id": "H01",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-08-04",
+      "discharge_date": "2026-08-07",
+      "filed_date": "2026-08-20",
+      "los_days": 3,
+      "room_type": "Semi-private",
+      "room_rate": 4600,
+      "is_accident": false,
+      "bill": {
+        "room": 13800,
+        "professional": 35030,
+        "medicines": 14010,
+        "diagnostics": 8280,
+        "consumables": 6370,
+        "non_medical": 0
+      },
+      "claimed_amount": 77490,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Meera Nair, 57M. Admitted 2026-08-04, discharged 2026-08-07. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: Semi-private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_duplicate"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0086",
+      "member_id": "M1048",
+      "hospital_id": "H02",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-06-03",
+      "discharge_date": "2026-06-06",
+      "filed_date": "2026-06-18",
+      "los_days": 3,
+      "room_type": "Private",
+      "room_rate": 9100,
+      "is_accident": false,
+      "bill": {
+        "room": 27300,
+        "professional": 31860,
+        "medicines": 12750,
+        "diagnostics": 7530,
+        "consumables": 5790,
+        "non_medical": 0
+      },
+      "claimed_amount": 85230,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Sahyadri Multispeciality, Pune. Patient Vihaan Verma, 64M. Admitted 2026-06-03, discharged 2026-06-06. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: Private. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "REJECT",
+      "scenario": "reject_specific_waiting"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0087",
+      "member_id": "M1080",
+      "hospital_id": "H04",
+      "procedure_code": "P101",
+      "diagnosis": "Appendectomy indicated",
+      "admission_date": "2026-07-26",
+      "discharge_date": "2026-07-29",
+      "filed_date": "2026-08-03",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 2300,
+      "is_accident": false,
+      "bill": {
+        "room": 6900,
+        "professional": 24520,
+        "medicines": 9810,
+        "diagnostics": 5800,
+        "consumables": 4460,
+        "non_medical": 0
+      },
+      "claimed_amount": 82490,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Ruby Hall Clinic, Pune. Patient Vikram Shah, 52M. Admitted 2026-07-26, discharged 2026-07-29. Diagnosis: Appendectomy indicated. Procedure performed: Appendectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_bill_tampering"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0088",
+      "member_id": "M1074",
+      "hospital_id": "H10",
+      "procedure_code": "P106",
+      "diagnosis": "Cholecystectomy indicated",
+      "admission_date": "2026-07-12",
+      "discharge_date": "2026-07-15",
+      "filed_date": "2026-07-18",
+      "los_days": 3,
+      "room_type": "General ward",
+      "room_rate": 2000,
+      "is_accident": false,
+      "bill": {
+        "room": 6000,
+        "professional": 53970,
+        "medicines": 21590,
+        "diagnostics": 12760,
+        "consumables": 9810,
+        "non_medical": 0
+      },
+      "claimed_amount": 104130,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof",
+        "operative_notes"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - MedCore Hospital, Thane. Patient Aarav Rao, 50M. Admitted 2026-07-12, discharged 2026-07-15. Diagnosis: Cholecystectomy indicated. Procedure performed: Cholecystectomy. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "ESCALATE",
+      "scenario": "escalate_watchlist_hospital"
+    }
+  },
+  {
+    "claim": {
+      "claim_id": "CLM-26-0089",
+      "member_id": "M1012",
+      "hospital_id": "H01",
+      "procedure_code": "P108",
+      "diagnosis": "Pneumonia treatment indicated",
+      "admission_date": "2026-07-17",
+      "discharge_date": "2026-07-22",
+      "filed_date": "2026-08-01",
+      "los_days": 5,
+      "room_type": "General ward",
+      "room_rate": 1900,
+      "is_accident": false,
+      "bill": {
+        "room": 9500,
+        "professional": 14630,
+        "medicines": 5850,
+        "diagnostics": 3460,
+        "consumables": 2660,
+        "non_medical": 0
+      },
+      "claimed_amount": 36100,
+      "documents": [
+        "claim_form",
+        "discharge_summary",
+        "final_bill",
+        "id_proof"
+      ],
+      "discharge_summary": "DISCHARGE SUMMARY - Apollo Care Hospital, Pune. Patient Aarav Nair, 61M. Admitted 2026-07-17, discharged 2026-07-22. Diagnosis: Pneumonia treatment indicated. Procedure performed: Pneumonia treatment. History: No significant past history. Room category: General ward. Condition at discharge: stable."
+    },
+    "truth": {
+      "decision": "APPROVE",
+      "scenario": "approve_clean"
+    }
+  }
+]

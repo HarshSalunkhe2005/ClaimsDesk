@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 860" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <style>
+    :root { --bg:#ffffff; --ink:#14213d; --muted:#5b6785; --line:#9aa5c0; --agent:#eaf0ff; --agent-b:#3b5bdb; --critic:#fff1e6; --critic-b:#e8590c; --tool:#f3f6fb; --store:#eefaf1; --store-b:#2f9e44; --llm:#f6efff; --llm-b:#7048e8; --out:#fff; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#0f1524; --ink:#e8ecf8; --muted:#9aa8c7; --line:#5b6785; --agent:#18264a; --agent-b:#748ffc; --critic:#3a2414; --critic-b:#ff922b; --tool:#161e33; --store:#13291b; --store-b:#69db7c; --llm:#241a40; --llm-b:#b197fc; --out:#141b2e; } }
+    .bg { fill: var(--bg); }
+    text { fill: var(--ink); }
+    .t-h { font-size: 20px; font-weight: 700; }
+    .t-s { font-size: 13.5px; fill: var(--muted); }
+    .t-b { font-size: 15px; font-weight: 600; }
+    .t-n { font-size: 12.5px; }
+    .agent { fill: var(--agent); stroke: var(--agent-b); stroke-width: 2; }
+    .critic { fill: var(--critic); stroke: var(--critic-b); stroke-width: 2.5; }
+    .tool { fill: var(--tool); stroke: var(--line); stroke-width: 1; }
+    .store { fill: var(--store); stroke: var(--store-b); stroke-width: 1.5; }
+    .llm { fill: var(--llm); stroke: var(--llm-b); stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .out { fill: var(--out); stroke: var(--line); stroke-width: 1.5; }
+    .flow { stroke: var(--agent-b); stroke-width: 2.5; fill: none; marker-end: url(#ah); }
+    .loop { stroke: var(--critic-b); stroke-width: 2.5; fill: none; stroke-dasharray: 8 5; marker-end: url(#ahc); }
+    .aux { stroke: var(--line); stroke-width: 1.5; fill: none; stroke-dasharray: 3 4; marker-end: url(#aha); }
+  </style>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3b5bdb"/></marker>
+    <marker id="ahc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e8590c"/></marker>
+    <marker id="aha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9aa5c0"/></marker>
+  </defs>
+  <rect class="bg" width="1400" height="860"/>
+
+  <text class="t-h" x="40" y="42">Claims Adjudication Agent: multi-agent architecture</text>
+  <text class="t-s" x="40" y="64">LangGraph state machine. The Critic can send a claim back to the Planner (dashed loop), so the flow is a feedback loop, not a straight pipeline.</text>
+
+  <!-- input -->
+  <rect class="out" x="40" y="96" width="230" height="76" rx="10"/>
+  <text class="t-b" x="58" y="124">Claim submission</text>
+  <text class="t-n" x="58" y="146">claim form, itemised bill,</text>
+  <text class="t-n" x="58" y="162">discharge summary, documents</text>
+  <path class="flow" d="M155,172 L155,226"/>
+
+  <!-- agents -->
+  <rect class="agent" x="40" y="228" width="200" height="150" rx="12"/>
+  <text class="t-b" x="58" y="256">1 Planner</text>
+  <text class="t-n" x="58" y="280">Reads claim risk (amount,</text><text class="t-n" x="58" y="296">network, watchlist, repeat</text><text class="t-n" x="58" y="312">claimant). Builds a lean or</text><text class="t-n" x="58" y="328">deep plan. Re-plans when</text><text class="t-n" x="58" y="344">the Critic objects.</text>
+
+  <rect class="agent" x="290" y="228" width="200" height="150" rx="12"/>
+  <text class="t-b" x="308" y="256">2 Extractor</text>
+  <text class="t-n" x="308" y="280">Parses the discharge</text><text class="t-n" x="308" y="296">summary: procedure,</text><text class="t-n" x="308" y="312">chronic history, accident.</text><text class="t-n" x="308" y="328">Reports extraction</text><text class="t-n" x="308" y="344">confidence.</text>
+
+  <rect class="agent" x="540" y="228" width="200" height="150" rx="12"/>
+  <text class="t-b" x="558" y="256">3 Executor</text>
+  <text class="t-n" x="558" y="280">Runs the plan step by</text><text class="t-n" x="558" y="296">step with Python tools.</text><text class="t-n" x="558" y="312">Stops early on a hard</text><text class="t-n" x="558" y="328">rule failure. Computes</text><text class="t-n" x="558" y="344">the admissible payout.</text>
+
+  <rect class="critic" x="790" y="228" width="200" height="150" rx="12"/>
+  <text class="t-b" x="808" y="256">4 Critic</text>
+  <text class="t-n" x="808" y="280">Re-verifies payout maths,</text><text class="t-n" x="808" y="296">limits, clause citations,</text><text class="t-n" x="808" y="312">extraction, and whether</text><text class="t-n" x="808" y="328">fraud screening matched</text><text class="t-n" x="808" y="344">the risk. Gives confidence.</text>
+
+  <rect class="agent" x="1040" y="228" width="200" height="150" rx="12"/>
+  <text class="t-b" x="1058" y="256">5 Decision</text>
+  <text class="t-n" x="1058" y="280">Applies precedence:</text><text class="t-n" x="1058" y="296">reject, query, escalate,</text><text class="t-n" x="1058" y="312">partial, approve. Cites</text><text class="t-n" x="1058" y="328">clauses and writes the</text><text class="t-n" x="1058" y="344">policyholder letter.</text>
+
+  <path class="flow" d="M240,303 L288,303"/>
+  <path class="flow" d="M490,303 L538,303"/>
+  <path class="flow" d="M740,303 L788,303"/>
+  <path class="flow" d="M990,303 L1038,303"/>
+  <text class="t-n" x="1006" y="293" style="fill:var(--muted)">pass</text>
+
+  <!-- loop back -->
+  <path class="loop" d="M890,378 C890,470 140,470 140,380"/>
+  <rect class="out" x="170" y="440" width="440" height="30" rx="15" style="stroke:var(--critic-b)"/>
+  <text class="t-n" x="188" y="460" style="font-weight:600">REPLAN: add checks, recompute (max 2 rounds, then escalate)</text>
+
+  <!-- tools -->
+  <text class="t-b" x="540" y="506">Executor tool belt</text>
+  <rect class="tool" x="40" y="520" width="1200" height="108" rx="10"/>
+  <g class="t-n">
+    <text x="60" y="548" style="font-weight:600">Always run (core)</text>
+    <text x="60" y="568">verify_documents · check_policy_status · check_waiting_periods · check_exclusions · check_duplicates</text>
+    <text x="60" y="588">check_filing_window · check_procedure_match · bill_integrity · check_high_value</text>
+    <text x="760" y="548" style="font-weight:600">Added when risk is present or Critic asks</text>
+    <text x="760" y="568">tariff_check · fraud_check (score 0-100)</text>
+    <text x="760" y="588" style="font-weight:600">Always last</text>
+    <text x="760" y="608">compute_payable (deductions with clause ids)</text>
+  </g>
+  <path class="aux" d="M640,378 L640,518"/>
+
+  <!-- data stores -->
+  <text class="t-b" x="40" y="668">Data stores (synthetic)</text>
+  <rect class="store" x="40" y="680" width="205" height="62" rx="8"/><text class="t-n" x="54" y="704" style="font-weight:600">Policy book</text><text class="t-n" x="54" y="722">plans, rules, 15 clauses</text>
+  <rect class="store" x="265" y="680" width="205" height="62" rx="8"/><text class="t-n" x="279" y="704" style="font-weight:600">Members</text><text class="t-n" x="279" y="722">policy dates, prior claims</text>
+  <rect class="store" x="490" y="680" width="205" height="62" rx="8"/><text class="t-n" x="504" y="704" style="font-weight:600">Hospitals</text><text class="t-n" x="504" y="722">network and watchlist flags</text>
+  <rect class="store" x="715" y="680" width="205" height="62" rx="8"/><text class="t-n" x="729" y="704" style="font-weight:600">Tariff benchmarks</text><text class="t-n" x="729" y="722">cost, stay, sub-limit, waiting</text>
+  <path class="aux" d="M340,680 L340,632"/><path class="aux" d="M590,680 L590,632"/>
+
+  <!-- LLM layer -->
+  <rect class="llm" x="960" y="660" width="280" height="96" rx="10"/>
+  <text class="t-b" x="978" y="686">Pluggable language model</text>
+  <text class="t-n" x="978" y="708">MockLLM (deterministic, default)</text>
+  <text class="t-n" x="978" y="726">or Ollama (local), auto-fallback</text>
+  <text class="t-n" x="978" y="744" style="fill:var(--muted)">used for rationale, extraction, letter</text>
+  <path class="aux" d="M1060,660 L1060,382"/>
+
+  <!-- outputs -->
+  <path class="flow" d="M1140,378 L1140,420" style="stroke:var(--agent-b)"/>
+  <rect class="out" x="1020" y="424" width="360" height="80" rx="10"/>
+  <text class="t-b" x="1036" y="450">Outcome</text>
+  <text class="t-n" x="1036" y="472">APPROVE · PARTIAL · REJECT</text>
+  <text class="t-n" x="1036" y="490">ESCALATE (human) · QUERY (documents)</text>
+
+  <!-- legend -->
+  <g transform="translate(40,790)">
+    <rect class="agent" width="22" height="14" rx="3"/><text class="t-n" x="30" y="12">agent</text>
+    <rect class="critic" x="100" width="22" height="14" rx="3"/><text class="t-n" x="130" y="12">critic (validator)</text>
+    <rect class="store" x="260" width="22" height="14" rx="3"/><text class="t-n" x="290" y="12">data store</text>
+    <rect class="llm" x="390" width="22" height="14" rx="3"/><text class="t-n" x="420" y="12">model layer</text>
+    <path class="flow" d="M520,7 L560,7"/><text class="t-n" x="570" y="12">control flow</text>
+    <path class="loop" d="M680,7 L720,7"/><text class="t-n" x="730" y="12">feedback loop</text>
+    <path class="aux" d="M850,7 L890,7"/><text class="t-n" x="900" y="12">reads / assists</text>
+  </g>
+</svg>

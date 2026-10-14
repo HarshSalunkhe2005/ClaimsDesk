@@ -1,0 +1,98 @@
+{
+  "plans": {
+    "BASIC": {
+      "name": "Suraksha Basic",
+      "sum_insured": 300000,
+      "room_cap": 3000
+    },
+    "SILVER": {
+      "name": "Suraksha Silver",
+      "sum_insured": 500000,
+      "room_cap": 5000
+    },
+    "GOLD": {
+      "name": "Suraksha Gold",
+      "sum_insured": 1000000,
+      "room_cap": 10000
+    }
+  },
+  "rules": {
+    "initial_waiting_days": 30,
+    "preexisting_months": 24,
+    "copay_non_network": 0.1,
+    "high_value_threshold": 300000,
+    "filing_window_days": 30,
+    "fraud_escalate_score": 60,
+    "required_docs": [
+      "claim_form",
+      "discharge_summary",
+      "final_bill",
+      "id_proof"
+    ],
+    "surgical_extra_docs": [
+      "operative_notes"
+    ]
+  },
+  "clauses": {
+    "C1": {
+      "title": "Policy in force",
+      "text": "Cover applies only while the policy is active on the date of admission."
+    },
+    "C2": {
+      "title": "Initial waiting period",
+      "text": "No claim is payable for illness within 30 days of policy inception. Accidents are exempt."
+    },
+    "C3": {
+      "title": "Pre-existing disease waiting",
+      "text": "Conditions that pre-date the policy, declared or not, are covered only after 24 months of continuous cover."
+    },
+    "C4": {
+      "title": "Specific procedure waiting",
+      "text": "Listed procedures (cataract, hernia, gallbladder: 12 months; joint replacement: 24 months) carry a waiting period."
+    },
+    "C5": {
+      "title": "Permanent exclusions",
+      "text": "Cosmetic surgery and dental treatment (other than accidental injury) are excluded."
+    },
+    "C6": {
+      "title": "Room rent proportionate deduction",
+      "text": "Room rent is capped per day by plan. If exceeded, associated charges are reduced in the same proportion."
+    },
+    "C7": {
+      "title": "Procedure sub-limit",
+      "text": "Payout for a procedure is capped at its listed sub-limit."
+    },
+    "C8": {
+      "title": "Non-network co-payment",
+      "text": "Treatment at a non-network hospital carries a 10% co-payment."
+    },
+    "C9": {
+      "title": "Mandatory documents",
+      "text": "Claim form, discharge summary, final bill and ID proof (plus operative notes for surgery) are required."
+    },
+    "C10": {
+      "title": "Filing window",
+      "text": "Claims must be filed within 30 days of discharge; later claims need manager approval."
+    },
+    "C11": {
+      "title": "Non-medical items",
+      "text": "Registration, admission kit, toiletries and similar non-medical charges are not payable."
+    },
+    "C12": {
+      "title": "Remaining sum insured",
+      "text": "Payout cannot exceed the sum insured remaining after earlier claims in the policy year."
+    },
+    "C13": {
+      "title": "Duplicate claims",
+      "text": "A claim for the same member, procedure and admission period already paid is not payable again."
+    },
+    "C14": {
+      "title": "High-value review",
+      "text": "Claims above Rs 3,00,000 require medical officer sign-off."
+    },
+    "C15": {
+      "title": "Fraud and misrepresentation",
+      "text": "Claims showing indicators of inflation, tampering or misrepresentation are referred for investigation."
+    }
+  }
+}

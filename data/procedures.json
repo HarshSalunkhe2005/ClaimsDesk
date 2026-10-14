@@ -1,0 +1,125 @@
+[
+  {
+    "code": "P101",
+    "name": "Appendectomy",
+    "kind": "surgical",
+    "benchmark": 55000,
+    "los": 3,
+    "sublimit": 75000,
+    "waiting": 0
+  },
+  {
+    "code": "P102",
+    "name": "Cataract surgery",
+    "kind": "surgical",
+    "benchmark": 35000,
+    "los": 1,
+    "sublimit": 45000,
+    "waiting": 12
+  },
+  {
+    "code": "P103",
+    "name": "Inguinal hernia repair",
+    "kind": "surgical",
+    "benchmark": 65000,
+    "los": 2,
+    "sublimit": 85000,
+    "waiting": 12
+  },
+  {
+    "code": "P104",
+    "name": "Total knee replacement",
+    "kind": "surgical",
+    "benchmark": 250000,
+    "los": 5,
+    "sublimit": 350000,
+    "waiting": 24
+  },
+  {
+    "code": "P105",
+    "name": "Coronary angioplasty",
+    "kind": "surgical",
+    "benchmark": 220000,
+    "los": 3,
+    "sublimit": 290000,
+    "waiting": 0,
+    "tag": "cardiac"
+  },
+  {
+    "code": "P106",
+    "name": "Cholecystectomy",
+    "kind": "surgical",
+    "benchmark": 70000,
+    "los": 3,
+    "sublimit": 90000,
+    "waiting": 12
+  },
+  {
+    "code": "P107",
+    "name": "Dengue treatment",
+    "kind": "medical",
+    "benchmark": 40000,
+    "los": 4,
+    "sublimit": 60000,
+    "waiting": 0
+  },
+  {
+    "code": "P108",
+    "name": "Pneumonia treatment",
+    "kind": "medical",
+    "benchmark": 45000,
+    "los": 5,
+    "sublimit": 65000,
+    "waiting": 0
+  },
+  {
+    "code": "P109",
+    "name": "Cosmetic rhinoplasty",
+    "kind": "surgical",
+    "benchmark": 120000,
+    "los": 2,
+    "sublimit": 0,
+    "waiting": 0,
+    "excluded": true
+  },
+  {
+    "code": "P110",
+    "name": "Dental implant",
+    "kind": "surgical",
+    "benchmark": 60000,
+    "los": 1,
+    "sublimit": 0,
+    "waiting": 0,
+    "excluded": true,
+    "accident_exempt": true
+  },
+  {
+    "code": "P111",
+    "name": "Fracture fixation (ORIF)",
+    "kind": "surgical",
+    "benchmark": 130000,
+    "los": 4,
+    "sublimit": 165000,
+    "waiting": 0
+  },
+  {
+    "code": "P112",
+    "name": "Diabetic ketoacidosis management",
+    "kind": "medical",
+    "benchmark": 60000,
+    "los": 4,
+    "sublimit": 80000,
+    "waiting": 0,
+    "tag": "diabetes"
+  },
+  {
+    "code": "P113",
+    "name": "Diagnostic coronary angiography",
+    "kind": "surgical",
+    "benchmark": 18000,
+    "los": 1,
+    "sublimit": 25000,
+    "waiting": 0,
+    "tag": "cardiac"
+  }
+]
