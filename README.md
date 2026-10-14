@@ -2,6 +2,21 @@
 
 A multi-agent proof of concept that performs first-pass adjudication of health-insurance claims. Built for CA-3 (Agentic AI, domain-specific PoC).
 
+## In plain words
+When you are treated in hospital, the hospital sends your insurer a claim: a bill plus a discharge summary. Someone at the insurer has to decide whether to pay, how much, or whether something looks wrong. This project does that first decision with five cooperating software agents, and hands only the doubtful claims to a person.
+
+| Agent | What it does, in one line |
+|---|---|
+| Planner | Decides how closely to check this claim |
+| Extractor | Reads the hospital's discharge summary |
+| Executor | Runs the checks and works out what is payable |
+| Critic | Double-checks the work, and can send it back |
+| Decision | Picks the outcome and writes to the member |
+
+**Example (claim CLM-26-0019, a cataract operation):** the Planner sees a small claim at a normal hospital and picks a quick check. The Executor finds the price is about 2.4 times the normal cost for that operation. The Critic notices that a bill that high should have had a fraud check, which the quick plan skipped, so it sends the claim back. The fraud check runs, scores 60 out of 100, and the claim goes to a human officer instead of being paid automatically.
+
+The five possible outcomes are: **approved**, **approved in part** (with deductions explained), **rejected** (a policy rule applies), **on hold** (documents missing), and **sent to a human**.
+
 ## Problem
 Insurers and TPAs adjudicate claims by hand: an officer reads the bill and discharge summary, checks the policy clauses, looks for inflation or fraud, and decides. It is slow, inconsistent, and fraud slips through. This PoC automates the first pass and sends only uncertain or risky claims to a human.
 

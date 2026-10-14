@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from html import escape as e
 
+from claimsagent.explain import AGENT_BLURB, METRIC_HELP, clause_name
 from claimsagent.tools import OPTIONAL_TOOLS, TOOL_LABELS
 
 NODES = ["Planner", "Extractor", "Executor", "Critic", "Decision"]
@@ -31,8 +32,7 @@ def chip(status: str, text: str | None = None) -> str:
 def clause_chip(cid, clauses) -> str:
     if not cid:
         return ""
-    title = (clauses.get(cid) or {}).get("title", "")
-    return f'<span class="clause" title="{e(title)}">{e(str(cid))}</span>'
+    return f'<span class="clause">{e(clause_name(cid))} ({e(str(cid))})</span>'
 
 
 # ---------------------------------------------------------------- state from events
@@ -51,10 +51,22 @@ def summarise(events: list[dict]) -> dict:
 
 
 # ---------------------------------------------------------------- pipeline
+def _wrap(txt: str, x: int, width: int = 21) -> str:
+    lines, cur = [], ""
+    for w_ in txt.split():
+        if len(cur) + len(w_) + 1 > width and cur:
+            lines.append(cur)
+            cur = w_
+        else:
+            cur = f"{cur} {w_}".strip()
+    lines.append(cur)
+    return "".join(f'<tspan x="{x}" dy="{0 if i == 0 else 18}">{e(l)}</tspan>' for i, l in enumerate(lines))
+
+
 def pipeline_svg(events: list[dict], finished: bool, decision: dict | None) -> str:
     s = summarise(events)
-    xs = [100, 310, 520, 730, 940]
-    w, h, y, bw, bh = 1040, 250, 120, 156, 92
+    xs = [112, 332, 552, 772, 992]
+    w, h, y, bw, bh = 1104, 290, 170, 192, 150
     out = [f'<svg viewBox="0 0 {w} {h}" role="img" aria-label="Pipeline: Planner, Extractor, Executor, Critic, Decision, with a loop from Critic back to Planner">',
            '<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#3b4a5f"/></marker>'
            '<marker id="arg" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#e9b44c"/></marker></defs>']
@@ -64,9 +76,9 @@ def pipeline_svg(events: list[dict], finished: bool, decision: dict | None) -> s
     # loop-back arrow
     on = s["replans"] > 0
     cx_c, cx_p = xs[3], xs[0]
-    out.append(f'<path class="loop{" on" if on else ""}" d="M{cx_c} {y - 4} C{cx_c} 14, {cx_p} 14, {cx_p} {y - 8}" marker-end="url(#{"arg" if on else "ar"})"/>')
+    out.append(f'<path class="loop{" on" if on else ""}" d="M{cx_c} {y - bh // 2 - 4} C{cx_c} 22, {cx_p} 22, {cx_p} {y - bh // 2 - 4}" marker-end="url(#{"arg" if on else "ar"})"/>')
     label = f"RE-PLAN ×{s['replans']}" if on else ("no re-plan needed" if finished else "Critic can send the claim back")
-    out.append(f'<text class="looplbl{" on" if on else ""}" x="{(cx_c + cx_p) // 2}" y="34" text-anchor="middle">{"↺ " if on else ""}{e(label)}</text>')
+    out.append(f'<text class="looplbl{" on" if on else ""}" x="{(cx_c + cx_p) // 2}" y="30" text-anchor="middle">{"↺ " if on else ""}{e(label)}</text>')
     for n, x in zip(NODES, xs):
         ran = len(s["runs"][n])
         active = (not finished) and s["last"] == n
@@ -86,8 +98,9 @@ def pipeline_svg(events: list[dict], finished: bool, decision: dict | None) -> s
             f'<g class="node {"active" if active else ""} {"done" if done else ""}">'
             f'<rect x="{x - bw // 2}" y="{y - bh // 2}" width="{bw}" height="{bh}" rx="16"/>'
             f'<text class="ic" x="{x - bw // 2 + 16}" y="{y - bh // 2 + 30}">{ic}</text>'
-            f'<text class="nm" x="{x}" y="{y - 2}" text-anchor="middle">{n}</text>'
-            f'<text class="st" x="{x}" y="{y + 20}" text-anchor="middle">{e(sub or st)}</text>{extra}</g>'
+            f'<text class="nm" x="{x}" y="{y - 36}" text-anchor="middle">{n}</text>'
+            f'<text class="bl" x="{x}" y="{y - 12}" text-anchor="middle">{_wrap(AGENT_BLURB[n], x)}</text>'
+            f'<text class="st" x="{x}" y="{y + 56}" text-anchor="middle">{e(sub or st)}</text>{extra}</g>'
         )
     out.append("</svg>")
     return '<div class="pipe panel">' + "".join(out) + "</div>"
@@ -100,7 +113,7 @@ def _planner_block(evs, plan_steps, clauses) -> str:
         d = ev.get("data", {})
         steps = d.get("steps", [])
         msg = ev["message"]
-        mode = "Re-plan" if ev["kind"] == "replan" else ("Deep review" if "deep" in msg.lower() else "Lean review")
+        mode = "Second look" if ev["kind"] == "replan" else ("Thorough check" if "deep" in msg.lower() else "Quick check")
         sched = {x for x in steps}
         chips = "".join(f'<span class="step">{e(x)}</span>' for x in steps)
         not_sched = [t for t in OPTIONAL_TOOLS if ev["kind"] == "plan" and t not in sched]
@@ -108,7 +121,7 @@ def _planner_block(evs, plan_steps, clauses) -> str:
         why = d.get("rationale") or msg
         h += (f'<div class="plan"><span class="mode"><span aria-hidden="true">◆</span>{mode}</span>'
               f'<p>{e(why)}</p><div class="steps">{chips}</div>'
-              + (f'<p class="note">Struck-through tools were not scheduled by this plan.</p>' if not_sched else "") + "</div>")
+              + (f'<p class="note">Struck-through checks were not scheduled by this plan.</p>' if not_sched else "") + "</div>")
         if ev["kind"] == "replan":
             h += f'<div class="ev">{e(msg)}</div>'
     return h
@@ -225,7 +238,7 @@ def decision_html(dec: dict, clauses: dict, claim_id: str) -> str:
              f'<span class="v">{inr(pay)}</span></div>')
     chips = "".join(clause_chip(c, clauses) + " " for c in dec.get("clauses", []))
     cl = "".join(
-        f'<details class="cl"><summary><span class="clause">{e(c)}</span> {e((clauses.get(c) or {}).get("title", ""))}</summary><p>{e((clauses.get(c) or {}).get("text", ""))}</p></details>'
+        f'<details class="cl"><summary><span class="clause">{e(clause_name(c))} ({e(c)})</span></summary><p>{e((clauses.get(c) or {}).get("text", ""))}</p></details>'
         for c in dec.get("clauses", [])
     )
     reasons = "".join(f"<li>{e(r)}</li>" for r in dec.get("reasons", []))
@@ -241,7 +254,7 @@ def decision_html(dec: dict, clauses: dict, claim_id: str) -> str:
         f'<div class="big d-{e(d)}"><span class="ico" aria-hidden="true">{ic}</span><span>{e(word)}</span></div>'
         f'<div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px">{human}<span class="badge" style="border-color:#3b4a5f;color:#9aa7b8">'
         f'{dec.get("iterations", 0)} re-plan{"s" if dec.get("iterations", 0) != 1 else ""} · confidence {float(dec.get("confidence", 0)):.0%}</span></div>'
-        f'<div class="wf"><div class="eyebrow">Payout waterfall</div>{rows}</div>'
+        f'<div class="wf"><div class="eyebrow">How the payout was worked out</div>{rows}</div>'
         f'<div class="eyebrow">Why</div><ul style="margin:0 0 10px 18px;padding:0;font-size:14.5px">{reasons}</ul>'
         f'<div class="eyebrow">Policy clauses</div><div style="margin-bottom:6px">{chips}</div>{cl}{fraud}'
         f'<div class="eyebrow" style="margin-top:16px">Letter to the member</div><div class="letter">{e(dec.get("letter", ""))}</div></div>'
@@ -266,13 +279,13 @@ def kpis_html(s: dict) -> str:
     manual_s = s["manual_minutes_baseline"] * 60
     sec = s["avg_ms"] / 1000
     tiles = [
-        (f'{s["accuracy"]:.1%}', "Decision accuracy", f'{s["correct"]} of {s["claims"]} claims'),
-        (f'{s["false_payment_rate"]:.1%}', "False-payment rate", f'{s["false_payments"]} of {s["risky_claims"]} risky claims paid'),
-        (f'{s["wrongful_hold_rate"]:.1%}', "Wrongful-hold rate", f'{s["wrongful_holds"]} of {s["payable_claims"]} payable claims held'),
-        (f'{s["straight_through_rate"]:.1%}', "Straight-through rate", f'{s["critic_replans"]} claims re-planned by the Critic'),
-        (f'{sec:.3f} s', "Average per claim", f'vs {s["manual_minutes_baseline"]} min manual (assumed) · about {manual_s / max(sec, 1e-6):,.0f}× faster'),
+        (f'{s["accuracy"]:.1%}', "Decision accuracy", f'{s["correct"]} of {s["claims"]} claims', METRIC_HELP["accuracy"]),
+        (f'{s["false_payment_rate"]:.1%}', "False-payment rate", f'{s["false_payments"]} of {s["risky_claims"]} risky claims paid', METRIC_HELP["false_payment_rate"]),
+        (f'{s["wrongful_hold_rate"]:.1%}', "Wrongful-hold rate", f'{s["wrongful_holds"]} of {s["payable_claims"]} payable claims held', METRIC_HELP["wrongful_hold_rate"]),
+        (f'{s["straight_through_rate"]:.1%}', "Straight-through rate", f'{s["critic_replans"]} claims got a second look from the Critic', METRIC_HELP["straight_through_rate"]),
+        (f'{sec:.3f} s', "Average per claim", f'vs {s["manual_minutes_baseline"]} min by hand (assumed) · about {manual_s / max(sec, 1e-6):,.0f}× faster', "Time the system takes per claim. The manual figure is an assumption, not a measurement."),
     ]
-    return '<div class="kpis">' + "".join(f'<div class="kpi"><div class="n">{a}</div><div class="l">{b}</div><div class="t">{c}</div></div>' for a, b, c in tiles) + "</div>"
+    return '<div class="kpis">' + "".join(f'<div class="kpi"><div class="n">{a}</div><div class="l">{b}</div><div class="t">{c}</div><p class="h">{d}</p></div>' for a, b, c, d in tiles) + "</div>"
 
 
 def confusion_html(conf: dict) -> str:
@@ -353,3 +366,23 @@ def robust_boundaries_html(before: dict, after: dict) -> str:
             return chip("pass", f'Pass · {c["got"]}') if c["ok"] else chip("fail", f'Fail · got {c["got"]}')
         h += f'<tr><th scope="row">{e(x["case"])}</th><td class="mono">{e(x["expected"])}</td><td>{res(b)}</td><td>{res(x)}</td></tr>'
     return h + "</tbody></table>"
+
+
+# ---------------------------------------------------------------- plain-English story
+def story_html(ex: dict) -> str:
+    steps = ""
+    for i, st_ in enumerate(ex["steps"], 1):
+        re = st_.get("replanned")
+        flag = '<span class="replan"><b aria-hidden="true">↺</b> The Critic sent this back for a second look</span>' if re else ""
+        steps += (f'<li class="{"re" if re else ""}"><span class="num" aria-hidden="true">{i}</span><div><b>{e(st_["agent"])}</b>'
+                  f'<span class="bl">{e(st_["blurb"])}</span>{flag}<p>{e(st_["text"])}</p></div></li>')
+    return (f'<div class="panel story"><div class="eyebrow">What happened</div>'
+            f'<h3>{e(ex["headline"])}</h3><p class="next">{e(ex["next_step"])}</p><ol>{steps}</ol></div>')
+
+
+def ticker_html(events: list[dict]) -> str:
+    if not events:
+        return ""
+    ev = events[-1]
+    return (f'<div class="panel story"><div class="eyebrow">Working on it</div>'
+            f'<p class="next"><b>{e(ev["agent"])}</b> · {e(AGENT_BLURB[ev["agent"]])}</p><p>{e(ev["message"])}</p></div>')

@@ -6,6 +6,7 @@ from pathlib import Path
 
 import streamlit as st
 
+from claimsagent.explain import explain
 from claimsagent import evaluate, graph, llm as llm_mod, store
 from ui import render as R
 
@@ -18,11 +19,11 @@ DEMOS = [
     ("CLM-26-0001", False, "Partial payout", "Room-rent proportionate deduction"),
     ("CLM-26-0004", False, "Reject", "Initial waiting period"),
     ("CLM-26-0007", False, "Reject", "Pre-existing condition"),
-    ("CLM-26-0019", False, "Re-plan loop", "Lean plan, Critic spots a 2× bill, escalate"),
+    ("CLM-26-0019", False, "Second-look loop", "Quick check misses a 2× bill, Critic sends it back"),
     ("CLM-26-0008", False, "Bill tampering", "Also loops back"),
     ("CLM-26-0006", False, "Procedure mismatch", "Escalate"),
     ("CLM-26-0002", False, "Missing documents", "Query the hospital"),
-    ("CLM-26-0003", True, "Fault injected", "Critic catches a wrong payout"),
+    ("CLM-26-0003", True, "Calculation error (simulated)", "Critic catches a wrong payout"),
 ]
 
 ss = st.session_state
@@ -31,6 +32,7 @@ ss.setdefault("fault", False)
 ss.setdefault("go", False)
 ss.setdefault("res", None)
 ss.setdefault("df_last", [])
+ss.setdefault("intro", True)
 
 
 @st.cache_data(show_spinner=False)
@@ -65,6 +67,13 @@ tab_desk, tab_eval, tab_rob, tab_arch = st.tabs(["Claim desk", "Evaluation", "Ro
 
 # ------------------------------------------------------------------ claim desk
 with tab_desk:
+    if ss.intro:
+        ia, ib = st.columns([12, 1])
+        ia.markdown('<div class="panel intro"><p><b>What is this?</b> A hospital sends an insurer a claim. Five software agents read it, check it against the policy and decide whether to pay.</p>'
+                    '<ol><li><span>1</span>Pick a claim</li><li><span>2</span>Press Run</li><li><span>3</span>Watch the agents</li></ol></div>', unsafe_allow_html=True)
+        if ib.button("Hide", key="hide_intro", help="Hide this introduction"):
+            ss.intro = False
+            st.rerun()
     left, right = st.columns([1, 2.35], gap="large")
     with left:
         st.markdown('<div class="eyebrow">Demo cases</div>', unsafe_allow_html=True)
@@ -85,19 +94,25 @@ with tab_desk:
                 ss.sel, ss.fault = shown[rows[0]]["Claim"], False
 
         st.markdown('<div class="eyebrow" style="margin-top:18px">Controls</div>', unsafe_allow_html=True)
-        st.toggle("Inject executor fault", key="fault", help="Corrupts the payout so you can watch the Critic catch it.")
-        model = st.selectbox("Model", ["Mock", "Ollama"], help="Mock is deterministic and instant. Ollama needs a local server.")
+        st.toggle("Simulate a calculation error (to show the Critic catching it)", key="fault")
+        model = st.selectbox("Model", ["Mock", "Ollama"], format_func=lambda m: "Mock (fast, offline demo model)" if m == "Mock" else "Ollama (local language model, needs a running server)")
         run = st.button("Run claim", type="primary", width="stretch")
 
     with right:
-        ph_claim, ph_pipe, ph_dec = st.empty(), st.empty(), st.empty()
-        c1, c2 = st.columns([1.25, 1], gap="medium")
-        ph_tl, ph_crit = c1.empty(), c2.empty()
+        ph_claim, ph_pipe, ph_story, ph_dec = st.empty(), st.empty(), st.empty(), st.empty()
+        with st.expander("Show the technical details", expanded=False):
+            ph_tl, ph_crit = st.empty(), st.empty()
 
-    def paint(claim, events, finished, decision):
+    def paint(claim, events, finished, decision, state=None):
         ph_pipe.markdown(R.pipeline_svg(events, finished, decision), unsafe_allow_html=True)
         ph_tl.markdown(R.timeline_html(events, store.clauses()), unsafe_allow_html=True)
         ph_crit.markdown(R.critic_html(events), unsafe_allow_html=True)
+        if state is not None and decision:
+            ph_story.markdown(R.story_html(explain(state)), unsafe_allow_html=True)
+        elif events and not finished:
+            ph_story.markdown(R.ticker_html(events), unsafe_allow_html=True)
+        else:
+            ph_story.empty()
         if decision:
             ph_dec.markdown(R.decision_html(decision, store.clauses(), claim["claim_id"]), unsafe_allow_html=True)
         else:
@@ -116,25 +131,28 @@ with tab_desk:
             st.warning(f"Could not reach the Ollama model ({exc}). Falling back to Mock.")
             model_obj = llm_mod.get_llm("mock")
         events, decision = [], None
+        state = {"claim": claim, "findings": [], "trace": []}
         paint(claim, events, False, None)
         for node, update in graph.stream_claim(claim, model_obj, ss.fault):
+            for k, v in update.items():
+                state[k] = state.get(k, []) + v if k in ("trace", "findings") else v
             for t in update.get("trace", []):
                 events.append(t)
                 paint(claim, events, False, None)
                 time.sleep(0.12 if t["agent"] == "Executor" else 0.28)
             if node == "decision":
                 decision = update["decision"]
-        paint(claim, events, True, decision)
-        ss.res = dict(cid=claim["claim_id"], events=events, decision=decision, fault=ss.fault)
+        paint(claim, events, True, decision, state)
+        ss.res = dict(cid=claim["claim_id"], events=events, decision=decision, fault=ss.fault, state=state)
     elif ss.res and ss.res["cid"] == claim["claim_id"]:
-        paint(claim, ss.res["events"], True, ss.res["decision"])
+        paint(claim, ss.res["events"], True, ss.res["decision"], ss.res["state"])
     else:
         paint(claim, [], False, None)
 
 # ------------------------------------------------------------------ evaluation
 with tab_eval:
     st.markdown("### How well does it adjudicate?")
-    st.caption("Scored against the hidden ground truth of all 89 claims. This is the only place the labels are used.")
+    st.markdown('<p class="howto"><b>How to read this.</b> We know the correct answer for 89 test claims. Each tile compares the system’s decision with that answer. The mistake that costs money is paying a claim that should not be paid, so watch the false-payment rate first. These answers are used only on this tab, never while a claim is being processed.</p>', unsafe_allow_html=True)
     rows_, s = eval_cached("Mock")
     st.markdown(R.kpis_html(s), unsafe_allow_html=True)
     st.markdown('<p class="note">The 25-minute manual baseline is an assumption, not a measured figure.</p>', unsafe_allow_html=True)
@@ -157,10 +175,12 @@ with tab_rob:
     rb = json.loads((ROOT / "data" / "robustness_before.json").read_text(encoding="utf-8"))
     ra = json.loads((ROOT / "data" / "robustness_after.json").read_text(encoding="utf-8"))
     st.markdown("### Does it hold up on messy input?")
+    st.markdown('<p class="howto"><b>How to read this.</b> We made the claims messy (typos, reworded notes, unreadable summaries) and measured the system twice. The first run found weaknesses, we fixed them, and the second run shows the result. Because we fixed what the first run found, the rows marked <b>Not tuned against</b> are the honest test: they use kinds of mess we never trained on.</p>', unsafe_allow_html=True)
     st.caption("Before = first run, which exposed the weaknesses. After = after fixes. Only the two UNSEEN rows were not tuned against.")
     st.markdown("#### Accuracy per condition")
     st.markdown(R.robust_accuracy_html(rb, ra), unsafe_allow_html=True)
     st.markdown("#### False payments: risky claims wrongly paid")
+    st.caption(R.METRIC_HELP["false_payment_rate"])
     st.markdown(R.robust_fp_html(rb, ra), unsafe_allow_html=True)
     st.markdown(f"#### Boundary cases: {ra['boundary_pass']} of {ra['boundary_total']} pass now (was {rb['boundary_pass']} of {rb['boundary_total']})")
     st.markdown(R.robust_boundaries_html(rb, ra), unsafe_allow_html=True)

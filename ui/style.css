@@ -139,3 +139,28 @@ table.rob tr.u th { font-weight: 700; }
 table.rob .v { font: 500 14px var(--mono); display: inline-block; min-width: 56px; }
 .rb { height: 8px; width: 140px; display: inline-block; vertical-align: middle; margin-left: 8px; background: #0e151e; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
 .rb i { display: block; height: 100%; } .rb .bb { background: repeating-linear-gradient(135deg, #5a6a80 0 5px, #3b4a5f 5px 10px); } .rb .ba { background: var(--pass); }
+
+/* clarity pass */
+.node .bl { font-size: 15px; fill: #c2cddc; }
+.node .st { font-size: 15px; } .node .nm { font-size: 20px; }
+.looplbl { font-size: 15px; }
+.kpi .h { margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
+.note, .claim dl, .ev, .tool, .check { font-size: 14px; }
+.step { font-size: 13px; } .chip { font-size: 13px; }
+.story h3 { font: 600 34px var(--serif); margin: 0 0 4px; padding: 0; }
+.story .next { font-size: 16px; margin: 0 0 14px; color: #cbd5e3; }
+.story ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.story li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 10px 12px; border-radius: 12px; background: var(--panel2); border: 1px solid var(--line); }
+.story li .num { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--line); font: 700 14px var(--sans); }
+.story li b { font-size: 15px; } .story li .bl { color: var(--muted); font-size: 14px; margin-left: 10px; }
+.story li p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; }
+.story li.re { border: 2px dashed var(--gold); background: rgba(233,180,76,.09); }
+.story li.re .num { border-color: var(--gold); color: var(--gold); }
+.replan { display: flex; gap: 6px; margin-top: 6px; font: 700 13px var(--sans); color: var(--gold); letter-spacing: .03em; }
+.intro { display: grid; grid-template-columns: 1.4fr 3fr; gap: 20px; align-items: center; padding: 14px 20px; margin-bottom: 14px; }
+.intro p { margin: 0; font-size: 15px; line-height: 1.5; color: #cbd5e3; }
+.intro ol { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.intro li { flex: 1; display: flex; gap: 10px; align-items: center; font-size: 15px; font-weight: 600; }
+.intro li span { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--gold); color: var(--gold); font: 700 14px var(--sans); }
+.howto { font-size: 15px; line-height: 1.55; color: #cbd5e3; max-width: 980px; }
+details[data-testid="stExpander"] { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
