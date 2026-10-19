@@ -15,6 +15,7 @@ from . import data_gen, store
 from .data_gen import PROC, Factory, _d
 from .evaluate import summarize
 from .graph import run_claim
+from .llm import get_llm
 
 HELD_OUT_SEEDS = [101, 102, 103, 104, 105]
 
@@ -113,6 +114,20 @@ def abbreviations(item, rng):
     return item
 
 
+def telegraphic(item, rng):
+    """UNSEEN family 3, written after the model prompt was tuned: clinical shorthand with none of the labels
+    ("History:", "Procedure performed:") the text parser relies on."""
+    t = item["claim"]["discharge_summary"]
+    for full, ab in ABBREV.items():
+        t = t.replace(f"Procedure performed: {full}.", f"Op: {ab}.")
+    t = re.sub(r"Procedure performed: (.+?)\.", r"Op: \1.", t)
+    t = re.sub(r"History: Known case of Type 2 diabetes since (\d{4})\.", r"PMH: T2DM (\1).", t)
+    t = re.sub(r"History: Known case of coronary artery disease since (\d{4})\.", r"PMH: IHD (\1).", t)
+    t = t.replace("History: No significant past history.", "PMH: nil.")
+    item["claim"]["discharge_summary"] = t
+    return item
+
+
 def format_noise(item, rng):
     item["claim"]["discharge_summary"] = item["claim"]["discharge_summary"].lower().replace(". ", ".\n  ")
     return item
@@ -148,8 +163,26 @@ CONDITIONS = [
     ("combined noise", combined),
     ("UNSEEN: random character noise", char_noise),
     ("UNSEEN: clinical abbreviations", abbreviations),
+    ("UNSEEN: telegraphic notes", telegraphic),
 ]
-UNSEEN = {"UNSEEN: random character noise", "UNSEEN: clinical abbreviations"}
+UNSEEN = {"UNSEEN: random character noise", "UNSEEN: clinical abbreviations", "UNSEEN: telegraphic notes"}
+
+
+class RulesOnly:
+    """Ablation baseline: no language model, so only the text parser reads the summary. A test double used to
+    measure what the model adds; it is not a product mode."""
+    name = "rules-only (no language model)"
+    model = "none"
+    tasks = set()
+
+    def extract(self, text):
+        return None
+
+    def plan_rationale(self, ctx):
+        return None
+
+    def decision_letter(self, ctx):
+        return None
 
 
 # ------------------------------------------------------------ boundaries ----
@@ -225,10 +258,14 @@ def _run(items, llm=None):
     return rows
 
 
-def run_all(llm=None):
-    base = [it for s in HELD_OUT_SEEDS for it in held_out(s)]
-    report = dict(held_out_seeds=HELD_OUT_SEEDS, conditions=[], boundaries=[])
+def run_all(llm=None, conditions=None, seeds=None):
+    llm = llm or get_llm(cache=True, tasks=("extract",))
+    seeds = seeds or HELD_OUT_SEEDS
+    base = [it for s in seeds for it in held_out(s)]
+    report = dict(held_out_seeds=seeds, model=getattr(llm, "model", "unknown"), conditions=[], boundaries=[])
     for name, fn in CONDITIONS:
+        if conditions and name not in conditions:
+            continue
         rng = random.Random(2026)
         items = []
         for it in base:
@@ -267,8 +304,19 @@ def show(rep):
 
 
 if __name__ == "__main__":
-    out = Path(sys.argv[1]) if len(sys.argv) > 1 else store.DATA / "robustness_report.json"
-    rep = run_all()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("out", nargs="?", default=str(store.DATA / "robustness_report.json"))
+    ap.add_argument("--rules-only", action="store_true", help="ablation: no language model")
+    ap.add_argument("--model", default=None)
+    ap.add_argument("--seeds", nargs="+", type=int)
+    ap.add_argument("--conditions", nargs="+", help="condition names to run (default: all)")
+    a = ap.parse_args()
+    out = Path(a.out)
+    model = RulesOnly() if a.rules_only else get_llm(a.model, cache=True, tasks=("extract",))
+    rep = run_all(model, a.conditions, a.seeds)
+    if hasattr(model, "save_cache"):
+        model.save_cache()
     out.write_text(json.dumps(rep, indent=2))
     show(rep)
     print("saved", out)

@@ -11,7 +11,7 @@ from typing import Annotated, TypedDict
 from langgraph.graph import END, START, StateGraph
 
 from . import store
-from .llm import MockLLM
+from .llm import get_llm
 from .tools import (CORE_TOOLS, OPTIONAL_TOOLS, TOOL_LABELS, TOOLS, inflation_ratio, parse_summary)
 
 MAX_ITERATIONS = 2
@@ -40,7 +40,7 @@ def ev(agent, kind, message, iteration=0, **data):
 
 # ---------------------------------------------------------------- build ----
 def build_graph(llm=None):
-    llm = llm or MockLLM()
+    llm = llm or get_llm()
 
     def planner(s):
         it = s.get("iteration", 0)
@@ -62,7 +62,7 @@ def build_graph(llm=None):
             optional = OPTIONAL_TOOLS if reasons else []
             steps = CORE_TOOLS + optional + ["compute_payable"]
             rationale = llm.plan_rationale(dict(kind=proc["kind"], reasons=reasons, optional=optional))
-            msg = f"{len(steps)}-step plan ({'deep' if optional else 'lean'} review). {rationale}"
+            msg = f"{len(steps)}-step plan ({'deep' if optional else 'lean'} review)." + (f" {rationale}" if rationale else "")
             return dict(member=m, hospital=h, plan=steps, done=[], skipped=[], iteration=0,
                         trace=[ev("Planner", "plan", msg, 0, steps=steps, rationale=rationale, reasons=reasons)])
         actions = s["critic"]["actions"]
@@ -71,17 +71,29 @@ def build_graph(llm=None):
 
     def extractor(s):
         c = s["claim"]
-        ex = llm.extract(c["discharge_summary"]) if hasattr(llm, "extract") else None
-        base = parse_summary(c["discharge_summary"])
-        src = "parser"
-        if ex and isinstance(ex, dict):
-            base["conditions"] = sorted(set(base["conditions"]) | set(ex.get("conditions") or []))
-            base["accident"] = base["accident"] or bool(ex.get("is_accident"))
-            src = llm.name
-        base["source"] = src
+        text = c["discharge_summary"]
+        base = parse_summary(text)  # fuzzy text parser: fast, exact on clean wording
+        ex = llm.extract(text)  # language model: reads abbreviations and unusual wording
+        notes = []
+        if ex is None:
+            base["source"] = "parser (model reply unusable)"
+        else:
+            base["source"] = f"parser + {llm.name}"
+            llm_code = next((k for k, p in store.procedures().items() if p["name"] == ex["procedure_name"]), None)
+            if base["procedure_code"] is None and llm_code:
+                base.update(procedure_code=llm_code, procedure_name=ex["procedure_name"], confidence=0.8)
+                notes.append("treatment identified by the language model")
+            elif llm_code and base["procedure_code"] != llm_code:
+                notes.append(f"language model read the treatment as {ex['procedure_name']}; parser's reading kept")
+            new_conds = sorted(set(ex["conditions"]) - set(base["conditions"]))
+            if new_conds:
+                notes.append("history read by the language model: " + ", ".join(new_conds))
+            base["conditions"] = sorted(set(base["conditions"]) | set(ex["conditions"]))
+            base["accident"] = base["accident"] or ex["accident"]
         found = base["procedure_name"] or "not stated"
-        msg = f"Parsed discharge summary ({src}): procedure '{found}', conditions {base['conditions'] or 'none'}, accident {base['accident']}, confidence {base['confidence']:.2f}."
-        return dict(extracted=base, trace=[ev("Extractor", "extract", msg, 0, extracted=base)])
+        msg = (f"Read discharge summary ({base['source']}): procedure '{found}', conditions {base['conditions'] or 'none'}, "
+               f"accident {base['accident']}, confidence {base['confidence']:.2f}." + (" " + "; ".join(notes) + "." if notes else ""))
+        return dict(extracted=base, trace=[ev("Extractor", "extract", msg, 0, extracted=base, notes=notes)])
 
     def executor(s):
         it = s.get("iteration", 0)

@@ -91,10 +91,10 @@
 
   <!-- LLM layer -->
   <rect class="llm" x="960" y="660" width="280" height="96" rx="10"/>
-  <text class="t-b" x="978" y="686">Pluggable language model</text>
-  <text class="t-n" x="978" y="708">MockLLM (deterministic, default)</text>
-  <text class="t-n" x="978" y="726">or Ollama (local), auto-fallback</text>
-  <text class="t-n" x="978" y="744" style="fill:var(--muted)">used for rationale, extraction, letter</text>
+  <text class="t-b" x="978" y="686">Local language model (Ollama)</text>
+  <text class="t-n" x="978" y="708">Reads discharge summaries, explains</text>
+  <text class="t-n" x="978" y="726">plans, writes the member letter</text>
+  <text class="t-n" x="978" y="744" style="fill:var(--muted)">Decisions and payouts stay rule-based</text>
   <path class="aux" d="M1060,660 L1060,382"/>
 
   <!-- outputs -->

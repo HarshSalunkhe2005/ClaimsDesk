@@ -2,4 +2,5 @@ __pycache__/
 *.pyc
 .venv/
 node_modules/
-docs/build_deck*.js
+docs/build_*.js
+data/llm_cache.json

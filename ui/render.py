@@ -63,7 +63,7 @@ def _wrap(txt: str, x: int, width: int = 21) -> str:
     return "".join(f'<tspan x="{x}" dy="{0 if i == 0 else 18}">{e(l)}</tspan>' for i, l in enumerate(lines))
 
 
-def pipeline_svg(events: list[dict], finished: bool, decision: dict | None) -> str:
+def pipeline_svg(events: list[dict], finished: bool, decision: dict | None, working: str | None = None) -> str:
     s = summarise(events)
     xs = [112, 332, 552, 772, 992]
     w, h, y, bw, bh = 1104, 290, 170, 192, 150
@@ -81,7 +81,7 @@ def pipeline_svg(events: list[dict], finished: bool, decision: dict | None) -> s
     out.append(f'<text class="looplbl{" on" if on else ""}" x="{(cx_c + cx_p) // 2}" y="30" text-anchor="middle">{"↺ " if on else ""}{e(label)}</text>')
     for n, x in zip(NODES, xs):
         ran = len(s["runs"][n])
-        active = (not finished) and s["last"] == n
+        active = (not finished) and (working or s["last"]) == n
         done = ran > 0 and not active
         st = "Working…" if active else ("Done" if done else "Waiting")
         ic = "◉" if active else ("✓" if done else "○")
@@ -257,7 +257,7 @@ def decision_html(dec: dict, clauses: dict, claim_id: str) -> str:
         f'<div class="wf"><div class="eyebrow">How the payout was worked out</div>{rows}</div>'
         f'<div class="eyebrow">Why</div><ul style="margin:0 0 10px 18px;padding:0;font-size:14.5px">{reasons}</ul>'
         f'<div class="eyebrow">Policy clauses</div><div style="margin-bottom:6px">{chips}</div>{cl}{fraud}'
-        f'<div class="eyebrow" style="margin-top:16px">Letter to the member</div><div class="letter">{e(dec.get("letter", ""))}</div></div>'
+        f'<div class="eyebrow" style="margin-top:16px">Letter to the member</div><div class="letter">{e(dec["letter"]) if dec.get("letter") else "Letter not available: the model’s wording did not match the real figures, so none is shown."}</div></div>'
     )
 
 
@@ -283,7 +283,7 @@ def kpis_html(s: dict) -> str:
         (f'{s["false_payment_rate"]:.1%}', "False-payment rate", f'{s["false_payments"]} of {s["risky_claims"]} risky claims paid', METRIC_HELP["false_payment_rate"]),
         (f'{s["wrongful_hold_rate"]:.1%}', "Wrongful-hold rate", f'{s["wrongful_holds"]} of {s["payable_claims"]} payable claims held', METRIC_HELP["wrongful_hold_rate"]),
         (f'{s["straight_through_rate"]:.1%}', "Straight-through rate", f'{s["critic_replans"]} claims got a second look from the Critic', METRIC_HELP["straight_through_rate"]),
-        (f'{sec:.3f} s', "Average per claim", f'vs {s["manual_minutes_baseline"]} min by hand (assumed) · about {manual_s / max(sec, 1e-6):,.0f}× faster', "Time the system takes per claim. The manual figure is an assumption, not a measurement."),
+        (f'{sec:.3f} s', "Rule checks per claim", f'vs {s["manual_minutes_baseline"]} min by hand (assumed)', "Time for the rule-based checks only. It excludes the language model’s reading and writing."),
     ]
     return '<div class="kpis">' + "".join(f'<div class="kpi"><div class="n">{a}</div><div class="l">{b}</div><div class="t">{c}</div><p class="h">{d}</p></div>' for a, b, c, d in tiles) + "</div>"
 
@@ -326,20 +326,35 @@ def _bar(v: float, cls: str) -> str:
     return f'<div class="rb"><i class="{cls}" style="width:{max(v, 0) * 100:.1f}%"></i></div>'
 
 
-def robust_accuracy_html(before: dict, after: dict) -> str:
-    h = ('<table class="rob"><thead><tr><th scope="col">Condition</th><th scope="col">Before</th><th scope="col">After</th></tr></thead><tbody>')
+def _third(llm: dict | None, name: str):
+    if not llm:
+        return None
+    return next((c for c in llm["conditions"] if c["name"] == name), None)
+
+
+def _llm_acc(c) -> str:
+    if not c:
+        return '<td><span class="note">not measured</span></td>'
+    return f'<td><span class="v">{_pct(c["accuracy"])}</span>{_bar(c["accuracy"], "ba")}</td>'
+
+
+def robust_accuracy_html(before: dict, after: dict, llm: dict | None = None) -> str:
+    h = ('<table class="rob"><thead><tr><th scope="col">Condition</th><th scope="col">Before</th><th scope="col">After</th>'
+         + ('<th scope="col">With the language model</th>' if llm else "") + '</tr></thead><tbody>')
     for r in _rob_rows(before, after):
         name = r["name"].replace("UNSEEN: ", "")
         tag = '<span class="unseen"><b aria-hidden="true">◆</b> Not tuned against</span>' if r["unseen"] else ""
         bcell = (f'<span class="v">{_pct(r["b"]["accuracy"])}</span>{_bar(r["b"]["accuracy"], "bb")}' if r["b"]
                  else '<span class="note">not measured</span>')
         h += (f'<tr class="{"u" if r["unseen"] else ""}"><th scope="row">{e(name)}{tag}</th><td>{bcell}</td>'
-              f'<td><span class="v">{_pct(r["a"]["accuracy"])}</span>{_bar(r["a"]["accuracy"], "ba")}</td></tr>')
+              f'<td><span class="v">{_pct(r["a"]["accuracy"])}</span>{_bar(r["a"]["accuracy"], "ba")}</td>'
+              + (_llm_acc(_third(llm, r["name"])) if llm else "") + '</tr>')
     return h + "</tbody></table>"
 
 
-def robust_fp_html(before: dict, after: dict) -> str:
-    h = ('<table class="rob"><thead><tr><th scope="col">Condition</th><th scope="col">Before</th><th scope="col">After</th></tr></thead><tbody>')
+def robust_fp_html(before: dict, after: dict, llm: dict | None = None) -> str:
+    h = ('<table class="rob"><thead><tr><th scope="col">Condition</th><th scope="col">Before</th><th scope="col">After</th>'
+         + ('<th scope="col">With the language model</th>' if llm else "") + '</tr></thead><tbody>')
     for r in _rob_rows(before, after):
         name = r["name"].replace("UNSEEN: ", "")
         tag = '<span class="unseen"><b aria-hidden="true">◆</b> Not tuned against</span>' if r["unseen"] else ""
@@ -350,13 +365,15 @@ def robust_fp_html(before: dict, after: dict) -> str:
             n = c["false_payments"]
             ic = chip("pass", "None") if n == 0 else chip("fail", f"{n} wrongly paid")
             return f'{ic}<span class="note"> of {c["risky_claims"]} risky · {_pct(c["false_payment_rate"])}</span>'
-        h += f'<tr class="{"u" if r["unseen"] else ""}"><th scope="row">{e(name)}{tag}</th><td>{cell(r["b"])}</td><td>{cell(r["a"])}</td></tr>'
+        h += f'<tr class="{"u" if r["unseen"] else ""}"><th scope="row">{e(name)}{tag}</th><td>{cell(r["b"])}</td><td>{cell(r["a"])}</td>{"<td>" + cell(_third(llm, r["name"])) + "</td>" if llm else ""}</tr>'
     return h + "</tbody></table>"
 
 
-def robust_boundaries_html(before: dict, after: dict) -> str:
+def robust_boundaries_html(before: dict, after: dict, llm: dict | None = None) -> str:
     bmap = {x["case"]: x for x in before["boundaries"]}
-    h = ('<table class="rob"><thead><tr><th scope="col">Boundary case</th><th scope="col">Expected</th><th scope="col">Before</th><th scope="col">After</th></tr></thead><tbody>')
+    lmap = {x["case"]: x for x in llm["boundaries"]} if llm else {}
+    h = ('<table class="rob"><thead><tr><th scope="col">Boundary case</th><th scope="col">Expected</th><th scope="col">Before</th><th scope="col">After</th>'
+         + ('<th scope="col">With the language model</th>' if llm else "") + '</tr></thead><tbody>')
     for x in after["boundaries"]:
         b = bmap.get(x["case"])
 
@@ -364,7 +381,7 @@ def robust_boundaries_html(before: dict, after: dict) -> str:
             if not c:
                 return '<span class="note">not measured</span>'
             return chip("pass", f'Pass · {c["got"]}') if c["ok"] else chip("fail", f'Fail · got {c["got"]}')
-        h += f'<tr><th scope="row">{e(x["case"])}</th><td class="mono">{e(x["expected"])}</td><td>{res(b)}</td><td>{res(x)}</td></tr>'
+        h += f'<tr><th scope="row">{e(x["case"])}</th><td class="mono">{e(x["expected"])}</td><td>{res(b)}</td><td>{res(x)}</td>{"<td>" + res(lmap.get(x["case"])) + "</td>" if llm else ""}</tr>'
     return h + "</tbody></table>"
 
 
@@ -380,9 +397,54 @@ def story_html(ex: dict) -> str:
             f'<h3>{e(ex["headline"])}</h3><p class="next">{e(ex["next_step"])}</p><ol>{steps}</ol></div>')
 
 
-def ticker_html(events: list[dict]) -> str:
+NEXT_AGENT = {"Planner": "Extractor", "Extractor": "Executor", "Executor": "Critic", "Critic": "Decision"}
+
+
+def next_agent(events: list[dict]) -> str:
+    """Which agent is busy while the stream is silent: the one after the last that reported."""
     if not events:
-        return ""
-    ev = events[-1]
+        return "Planner"
+    last = events[-1]
+    if last["agent"] == "Critic" and last["data"].get("verdict") == "replan":
+        return "Planner"
+    return NEXT_AGENT.get(last["agent"], "Decision")
+
+
+def ticker_html(events: list[dict], working: str | None = None) -> str:
+    if working is None:
+        working = next_agent(events)
+    done = f'<p class="note" style="margin:0 0 6px">Just finished: {e(events[-1]["message"])}</p>' if events else ""
     return (f'<div class="panel story"><div class="eyebrow">Working on it</div>'
-            f'<p class="next"><b>{e(ev["agent"])}</b> · {e(AGENT_BLURB[ev["agent"]])}</p><p>{e(ev["message"])}</p></div>')
+            f'<p class="next"><b>{e(working)}</b> is working. {e(AGENT_BLURB[working])} '
+            f'The language model can take several seconds per step.</p>{done}</div>')
+
+
+# ---------------------------------------------------------------- language model status and notes
+def model_status_html(st_: dict) -> str:
+    if st_["ok"]:
+        c = chip("pass", "Ready")
+        extra = ""
+    else:
+        c = chip("fail", "Unavailable")
+        extra = f'<div class="sentback" style="margin-top:8px"><b>▲ The language model is not available.</b> {e(st_["message"])}<br>Claims cannot be run until it is.</div>'
+    return (f'<div class="panel" style="padding:12px 14px;margin:6px 0 10px"><div class="eyebrow">Language model</div>'
+            f'<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">{c}<span style="font-size:14px"><b>{e(st_["model"])}</b> (runs locally via Ollama)</span></div>{extra}</div>')
+
+
+def model_error_html(msg: str) -> str:
+    return (f'<div class="panel story"><div class="eyebrow">Run stopped</div><h3>The language model stopped responding</h3>'
+            f'<p class="next">{e(msg)}</p><p class="note">No decision was made. Start the model and press Run claim again.</p></div>')
+
+
+def llm_notes_html(events: list[dict]) -> str:
+    notes = []
+    for ev in events:
+        for n in ev.get("data", {}).get("notes", []) or []:
+            if n not in notes:
+                notes.append(n)
+    if not notes:
+        return ""
+    items = "".join(f"<li>{e(n[:1].upper() + n[1:])}</li>" for n in notes)
+    return (f'<div class="panel story" style="margin-top:12px"><div class="eyebrow">What the language model added</div>'
+            f'<p class="note" style="margin:0 0 6px">Where it read the discharge summary and found something the plain parser missed. The rules, not the model, still make every decision.</p>'
+            f'<ul style="margin:0 0 0 18px;font-size:15px">{items}</ul></div>')

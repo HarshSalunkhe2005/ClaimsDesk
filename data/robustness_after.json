@@ -6,6 +6,7 @@
     104,
     105
   ],
+  "model": "none",
   "conditions": [
     {
       "name": "clean (held-out seeds)",
@@ -159,6 +160,58 @@
           "REJECT->PARTIAL",
           "REJECT->APPROVE",
           "REJECT->PARTIAL",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE"
+        ]
+      }
+    },
+    {
+      "name": "UNSEEN: telegraphic notes",
+      "unseen": true,
+      "claims": 445,
+      "accuracy": 0.926,
+      "false_payment_rate": 0.138,
+      "false_payments": 33,
+      "risky_claims": 240,
+      "wrongful_hold_rate": 0.0,
+      "wrongful_holds": 0,
+      "payable_claims": 205,
+      "critic_replans": 14,
+      "failures": {
+        "escalate_procedure_mismatch": [
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE",
+          "ESCALATE->APPROVE"
+        ],
+        "reject_pre_existing": [
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->PARTIAL",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->PARTIAL",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
+          "REJECT->APPROVE",
           "REJECT->APPROVE",
           "REJECT->APPROVE",
           "REJECT->APPROVE"

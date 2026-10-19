@@ -11,7 +11,9 @@ MANUAL_MIN_PER_CLAIM = 25  # assumption: typical manual first-pass adjudication 
 
 
 def evaluate(llm=None, limit=None):
-    llm = llm or get_llm("mock")
+    # Accuracy tests score decisions, which never depend on the model's prose, so they skip the rationale and
+    # letter calls and run only the extraction task (the one that can change a decision).
+    llm = llm or get_llm(cache=True, tasks=("extract",))
     rows = []
     for item in store.all_claims()[:limit]:
         out = run_claim(item["claim"], llm)
@@ -49,7 +51,10 @@ def summarize(rows):
 
 
 if __name__ == "__main__":
-    rows, summ = evaluate()
+    llm_ = get_llm(cache=True, tasks=("extract",))
+    rows, summ = evaluate(llm_)
+    summ["model"] = llm_.model
+    (store.DATA / "eval_summary.json").write_text(json.dumps(summ, indent=2))
     print(json.dumps({k: v for k, v in summ.items() if k != "misses"}, indent=2))
     print("MISSES:")
     for m in summ["misses"]:

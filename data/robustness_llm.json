@@ -1,0 +1,206 @@
+{
+  "held_out_seeds": [
+    102
+  ],
+  "model": "llama3.2:3b",
+  "conditions": [
+    {
+      "name": "clean (held-out seeds)",
+      "unseen": false,
+      "claims": 89,
+      "accuracy": 1.0,
+      "false_payment_rate": 0.0,
+      "false_payments": 0,
+      "risky_claims": 48,
+      "wrongful_hold_rate": 0.0,
+      "wrongful_holds": 0,
+      "payable_claims": 41,
+      "critic_replans": 2,
+      "failures": {}
+    },
+    {
+      "name": "UNSEEN: random character noise",
+      "unseen": true,
+      "claims": 89,
+      "accuracy": 1.0,
+      "false_payment_rate": 0.0,
+      "false_payments": 0,
+      "risky_claims": 48,
+      "wrongful_hold_rate": 0.0,
+      "wrongful_holds": 0,
+      "payable_claims": 41,
+      "critic_replans": 2,
+      "failures": {}
+    },
+    {
+      "name": "UNSEEN: clinical abbreviations",
+      "unseen": true,
+      "claims": 89,
+      "accuracy": 1.0,
+      "false_payment_rate": 0.0,
+      "false_payments": 0,
+      "risky_claims": 48,
+      "wrongful_hold_rate": 0.0,
+      "wrongful_holds": 0,
+      "payable_claims": 41,
+      "critic_replans": 2,
+      "failures": {}
+    },
+    {
+      "name": "UNSEEN: telegraphic notes",
+      "unseen": true,
+      "claims": 89,
+      "accuracy": 1.0,
+      "false_payment_rate": 0.0,
+      "false_payments": 0,
+      "risky_claims": 48,
+      "wrongful_hold_rate": 0.0,
+      "wrongful_holds": 0,
+      "payable_claims": 41,
+      "critic_replans": 2,
+      "failures": {}
+    }
+  ],
+  "boundaries": [
+    {
+      "case": "initial waiting 29 days",
+      "expected": "REJECT",
+      "got": "REJECT",
+      "ok": true
+    },
+    {
+      "case": "initial waiting 30 days",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    },
+    {
+      "case": "12-month waiting at 11.8 months",
+      "expected": "REJECT",
+      "got": "REJECT",
+      "ok": true
+    },
+    {
+      "case": "12-month waiting at 12.2 months",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    },
+    {
+      "case": "24-month waiting at 23.8 months",
+      "expected": "REJECT",
+      "got": "REJECT",
+      "ok": true
+    },
+    {
+      "case": "24-month waiting at 24.2 months",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    },
+    {
+      "case": "pre-existing at 23.8 months",
+      "expected": "REJECT",
+      "got": "REJECT",
+      "ok": true
+    },
+    {
+      "case": "pre-existing at 24.2 months",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    },
+    {
+      "case": "filed 30 days after discharge",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    },
+    {
+      "case": "filed 31 days after discharge",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true
+    },
+    {
+      "case": "claim Rs 2,99,990",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    },
+    {
+      "case": "claim Rs 3,00,010",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true
+    },
+    {
+      "case": "non-room charges at 1.49x benchmark",
+      "expected": "PARTIAL",
+      "got": "PARTIAL",
+      "ok": true
+    },
+    {
+      "case": "non-room charges at 2.01x benchmark",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true
+    },
+    {
+      "case": "1.49x benchmark, watchlist hospital",
+      "expected": "PARTIAL",
+      "got": "PARTIAL",
+      "ok": true
+    },
+    {
+      "case": "1.51x benchmark, watchlist hospital",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true
+    },
+    {
+      "case": "2.2x non-room in a Rs 8,000/day room",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true
+    },
+    {
+      "case": "room rent exactly at cap",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    },
+    {
+      "case": "room rent Rs 100 over cap",
+      "expected": "PARTIAL",
+      "got": "PARTIAL",
+      "ok": true
+    },
+    {
+      "case": "claim exactly at sub-limit",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    },
+    {
+      "case": "claim Rs 10 over sub-limit",
+      "expected": "PARTIAL",
+      "got": "PARTIAL",
+      "ok": true
+    },
+    {
+      "case": "duplicate 5 days apart",
+      "expected": "REJECT",
+      "got": "REJECT",
+      "ok": true
+    },
+    {
+      "case": "duplicate 6 days apart",
+      "expected": "APPROVE",
+      "got": "APPROVE",
+      "ok": true
+    }
+  ],
+  "boundary_pass": 23,
+  "boundary_total": 23
+}
