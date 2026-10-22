@@ -2,6 +2,8 @@
 
 A multi-agent proof of concept that makes the first decision on health-insurance claims. Built for CA-3 (Agentic AI, domain-specific PoC) by Harsh Salunkhe (24070126066) and Dharna Sharma (24070126053).
 
+**Live preview:** https://claims-adjudication-agent.onrender.com (read-only). It shows the interface, the evaluation and the robustness results, but it cannot run claims, because the language model runs locally through Ollama and the cloud host has none. To run claims, follow the Run section below.
+
 ## In plain words
 When you are treated in hospital, the hospital sends your insurer a claim: a bill plus a discharge summary. Someone at the insurer has to decide whether to pay, how much, or whether something looks wrong. This project does that first decision with five cooperating software agents, and hands only the doubtful claims to a person.
 
