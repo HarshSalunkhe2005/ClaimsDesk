@@ -9,7 +9,7 @@ import streamlit as st
 
 from claimsagent.explain import explain
 from claimsagent import graph, store
-from claimsagent.llm import LLMUnavailable, get_llm
+from claimsagent.llm import LLMUnavailable, ensure_running, get_llm
 from ui import render as R
 
 ROOT = Path(__file__).parent
@@ -51,8 +51,15 @@ def claims_index() -> list[dict]:
     return rows
 
 
+@st.cache_resource(show_spinner="Starting the local language model...")
+def boot_model() -> dict:
+    """Runs once per app start: launches Ollama if needed and loads the model into memory."""
+    return ensure_running()
+
+
 @st.cache_data(ttl=10, show_spinner=False)
 def model_status() -> dict:
+    boot_model()
     m = get_llm()
     return dict(model=m.model, **m.health())
 

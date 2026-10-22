@@ -46,7 +46,7 @@ ollama pull llama3.2:3b
 
 # 2. Python side
 pip install -r requirements.txt
-streamlit run app.py                # demo UI (Ollama must be running)
+streamlit run app.py                # demo UI (starts Ollama and loads the model by itself if it is not running)
 
 # Optional
 python -m claimsagent.data_gen      # regenerate the synthetic data (seeded)

@@ -13,6 +13,11 @@ import hashlib
 import json
 import os
 import re
+import shutil
+import subprocess
+import sys
+import threading
+import time
 
 import requests
 
@@ -99,6 +104,14 @@ class OllamaLLM:
             self._cache[key] = out
             CACHE_FILE.write_text(json.dumps(self._cache))
         return out
+
+    def preload(self):
+        """Loads the model into memory so the first real request does not pay the cold-start cost."""
+        try:
+            requests.post(f"{self.host}/api/generate", json=dict(model=self.model, prompt="", stream=False, keep_alive="30m"),
+                          timeout=300)
+        except Exception:
+            pass  # preloading is only an optimisation
 
     def save_cache(self):
         if self._cache is not None:
@@ -212,3 +225,43 @@ class OllamaLLM:
 
 def get_llm(model=None, **kw):
     return OllamaLLM(model or DEFAULT_MODEL, **kw)
+
+
+def _ollama_program():
+    found = shutil.which("ollama")
+    if found:
+        return found
+    local = os.environ.get("LOCALAPPDATA")
+    if local:
+        p = os.path.join(local, "Programs", "Ollama", "ollama.exe")
+        if os.path.exists(p):
+            return p
+    return None
+
+
+def ensure_running(model=None, wait=45):
+    """Starts a local Ollama server if none is running, then loads the model in the background.
+
+    For use on the machine that has Ollama installed. On a host without the program (for example a cloud
+    web service) it starts nothing and just reports the problem. Returns the health dict.
+    """
+    llm = get_llm(model)
+    h = llm.health()
+    if not h["ok"] and "not running" in h["message"]:
+        exe = _ollama_program()
+        if not exe:
+            return dict(ok=False, message="Ollama is not installed on this machine.")
+        flags = 0
+        if sys.platform == "win32":
+            flags = 0x00000008 | 0x00000200 | 0x08000000  # detached, own process group, no console window
+        subprocess.Popen([exe, "serve"], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                         creationflags=flags, close_fds=True)
+        deadline = time.time() + wait
+        while time.time() < deadline:
+            time.sleep(1)
+            h = llm.health()
+            if h["ok"] or "not running" not in h["message"]:
+                break
+    if h["ok"]:
+        threading.Thread(target=llm.preload, daemon=True).start()
+    return h
